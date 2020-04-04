@@ -1,7 +1,8 @@
-package com.example.washugains
+package com.example.washugains.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.washugains.R
 
 class MainActivity : AppCompatActivity() {
 

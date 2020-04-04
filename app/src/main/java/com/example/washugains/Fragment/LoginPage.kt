@@ -1,4 +1,4 @@
-package com.example.washugains
+package com.example.washugains.Fragment
 
 import android.content.ContentValues
 import android.content.Intent
@@ -10,12 +10,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.washugains.Activity.MainActivity
+import com.example.washugains.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.login_page.*
 
 class LoginPage : Fragment() {
 
+    lateinit var  backdoorButton : Button
     lateinit var loginButton : Button
     private lateinit var db : FirebaseFirestore
 
@@ -32,6 +35,13 @@ class LoginPage : Fragment() {
         super.onStart()
 
         db = FirebaseFirestore.getInstance()
+
+        //TODO remove backdoor when finished
+        backdoorButton = backDoor
+        backdoorButton.setOnClickListener {
+            val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         //grabs button from login_page
         loginButton = login

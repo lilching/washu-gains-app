@@ -43,6 +43,15 @@
         android:layout_marginTop="50dp"
         android:text="Login"
         />
+    <Button
+        android:id="@+id/backDoor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BackDoor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login"
+        />
 
 
 

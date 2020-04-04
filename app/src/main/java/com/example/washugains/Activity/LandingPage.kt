@@ -1,10 +1,13 @@
-package com.example.washugains
+package com.example.washugains.Activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.washugains.Fragment.LoginPage
+import com.example.washugains.R
+import com.example.washugains.Fragment.SignUpPage
 import kotlinx.android.synthetic.main.landing_page.*
 
 
@@ -15,7 +18,10 @@ class LandingPage : AppCompatActivity() {
         setContentView(R.layout.landing_page)
 
         val pageNumb = intent.getIntExtra("pageNumb", 0)
-        val fragmentAdapter = MyPagerAdapter(supportFragmentManager)
+        val fragmentAdapter =
+            MyPagerAdapter(
+                supportFragmentManager
+            )
 
         //grabs viewPage element from landing_page
         viewPager.adapter = fragmentAdapter
@@ -36,7 +42,9 @@ class LandingPage : AppCompatActivity() {
 
         override fun getItem(position: Int): Fragment {
             return when (position) {
-                0 -> {LoginPage()}
+                0 -> {
+                    LoginPage()
+                }
                 else -> SignUpPage()
             }
         }

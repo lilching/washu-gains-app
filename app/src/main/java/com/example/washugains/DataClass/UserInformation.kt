@@ -1,4 +1,4 @@
-package com.example.washugains
+package com.example.washugains.DataClass
 
 
 //information to be associated with each account

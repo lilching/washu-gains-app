@@ -1,4 +1,4 @@
-package com.example.washugains
+package com.example.washugains.Fragment
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -10,6 +10,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.washugains.Activity.MainActivity
+import com.example.washugains.R
+import com.example.washugains.DataClass.UserInformation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
@@ -57,9 +60,10 @@ class SignUpPage : Fragment() {
                         user?.updateProfile(profileUpdate)
 
                         //bundle information in created data class UserInformation
-                        val userInfo = UserInformation(
-                            username
-                        )
+                        val userInfo =
+                            UserInformation(
+                                username
+                            )
 
                         val userMap: MutableMap<String, Any> = HashMap()
                         userMap["username"] = userInfo.username
