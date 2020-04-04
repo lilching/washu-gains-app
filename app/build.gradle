@@ -53,5 +53,8 @@ dependencies {
     //multidex to exceed script count
     implementation "androidx.multidex:multidex:2.0.1"
 
+    //for the segmented control UI library
+    implementation 'info.hoang8f:android-segmented:1.0.6'
+
 
 }
