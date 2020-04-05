@@ -76,6 +76,7 @@ class SignUpPage : Fragment() {
                         Toast.makeText(context, "Account Created", Toast.LENGTH_SHORT)
                             .show()
                         val intent = Intent(context, MainActivity::class.java)
+                        intent.putExtra("username", username)
                         startActivity(intent)
                     }
                     else {

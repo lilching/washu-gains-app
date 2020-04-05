@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:text="Welcome Back "
+        android:textSize="40dp"
+        />
+    <TextView
+        android:id="@+id/usernameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintTop_toBottomOf="@id/welcomeText"
+        android:gravity="center"
+        android:text="UserName"
+        android:textSize="40dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/textImageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/usernameText"
+        >
+        <TextView
+            android:id="@+id/inspirationalQuote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="You Can Do It!"
+            android:textSize="30dp"
+            android:layout_marginTop="20dp"
+            />
+        <ImageView
+            android:id="@+id/inspirationalImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/acai"
+            android:layout_marginTop="-20dp"
+            android:layout_marginBottom="-70dp"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:weightSum="3"
+        >
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            android:text="+"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:textSize="20dp"
+
+            android:layout_weight="1"
+            android:text="Progress"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            android:text="My Info"
+            />
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
