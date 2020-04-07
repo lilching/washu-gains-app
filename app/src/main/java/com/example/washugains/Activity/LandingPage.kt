@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.washugains.Fragment.LoginPage
+import com.example.washugains.Fragment.UserAccess.LoginPage
 import com.example.washugains.R
-import com.example.washugains.Fragment.SignUpPage
+import com.example.washugains.Fragment.UserAccess.SignUpPage
 import kotlinx.android.synthetic.main.landing_page.*
 
 

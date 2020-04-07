@@ -1,4 +1,4 @@
-package com.example.washugains.Fragment
+package com.example.washugains.Fragment.UserAccess
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -33,6 +33,7 @@ class SignUpPage : Fragment() {
     }
 
     override fun onStart() {
+
         super.onStart()
         db = FirebaseFirestore.getInstance()
         val settings = FirebaseFirestoreSettings.Builder()

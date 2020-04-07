@@ -1,4 +1,4 @@
-package com.example.washugains.Fragment
+package com.example.washugains.Fragment.UserAccess
 
 import android.content.ContentValues
 import android.content.Intent

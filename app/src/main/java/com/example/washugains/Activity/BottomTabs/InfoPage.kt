@@ -1,9 +1,10 @@
-package com.example.washugains.Activity
+package com.example.washugains.Activity.BottomTabs
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.washugains.Activity.LandingPage
 import com.example.washugains.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.info_page.*

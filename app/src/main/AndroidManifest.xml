@@ -26,13 +26,13 @@
         <activity android:name=".Activity.MainActivity">
         </activity>
 
-        <activity android:name=".Activity.AddPage">
+        <activity android:name=".Activity.BottomTabs.AddPage">
         </activity>
 
-        <activity android:name=".Activity.InfoPage">
+        <activity android:name=".Activity.BottomTabs.InfoPage">
         </activity>
 
-        <activity android:name=".Activity.ProgressPage">
+        <activity android:name=".Activity.BottomTabs.ProgressPage">
         </activity>
 
     </application>
