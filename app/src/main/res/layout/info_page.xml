@@ -34,15 +34,15 @@
             android:layout_weight="0.3"
             android:paddingRight="20dp"
             />
+
         <TextView
             android:id="@+id/infoUserText"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:text="Jasmine GOD"
-            android:textSize="40dp"
-            android:gravity="center"
             android:layout_weight="0.7"
-            />
+            android:gravity="center"
+            android:text="BEN THE ONLY GOD"
+            android:textSize="40dp" />
     </LinearLayout>
 
     <Button
