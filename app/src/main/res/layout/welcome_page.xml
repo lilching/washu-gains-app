@@ -51,7 +51,7 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/buttonLayout"
+        android:id="@+id/welcome_buttonLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -59,6 +59,7 @@
         android:weightSum="3"
         >
         <Button
+            android:id="@+id/welcomeAdd"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:textSize="20dp"
@@ -66,6 +67,7 @@
             android:text="+"
             />
         <Button
+            android:id="@+id/welcomeProgress"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:textSize="20dp"
@@ -74,6 +76,7 @@
             android:text="Progress"
             />
         <Button
+            android:id="@+id/welcomeInfo"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:textSize="20dp"

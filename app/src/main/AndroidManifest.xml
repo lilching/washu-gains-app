@@ -26,6 +26,15 @@
         <activity android:name=".Activity.MainActivity">
         </activity>
 
+        <activity android:name=".Activity.AddPage">
+        </activity>
+
+        <activity android:name=".Activity.InfoPage">
+        </activity>
+
+        <activity android:name=".Activity.ProgressPage">
+        </activity>
+
     </application>
 
 </manifest>

@@ -62,5 +62,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@mipmap/ic_camera" />
 
+    <LinearLayout
+        android:id="@+id/add_buttonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:weightSum="3"
+        >
+        <Button
+            android:id="@+id/addAdd"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            android:text="+"
+            />
+        <Button
+            android:id="@+id/addProgress"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:textSize="20dp"
+
+            android:layout_weight="1"
+            android:text="Progress"
+            />
+        <Button
+            android:id="@+id/addInfo"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            android:text="My Info"
+            />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
