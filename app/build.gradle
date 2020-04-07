@@ -43,6 +43,8 @@ dependencies {
     //Firebase
     implementation 'com.google.firebase:firebase-auth:19.3.0'
     implementation 'com.google.firebase:firebase-firestore:17.1.2'
+    implementation 'com.google.firebase:firebase-database-ktx:19.2.1'
+
 
     //recycler view
     implementation "androidx.recyclerview:recyclerview:1.1.0"

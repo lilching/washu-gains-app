@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.welcome_page.*
 
-class MainActivity : AppCompatActivity() {
+class WelcomePage : AppCompatActivity() {
 
     private lateinit var db : FirebaseFirestore
     private lateinit var infoButton : Button

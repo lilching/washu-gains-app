@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.washugains.Activity.MainActivity
+import com.example.washugains.Activity.WelcomePage
 import com.example.washugains.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -39,7 +39,7 @@ class LoginPage : Fragment() {
         //TODO remove backdoor when finished
         backdoorButton = backDoor
         backdoorButton.setOnClickListener {
-            val intent = Intent(context, MainActivity::class.java)
+            val intent = Intent(context, WelcomePage::class.java)
             startActivity(intent)
         }
 
@@ -56,7 +56,7 @@ class LoginPage : Fragment() {
                 .addOnCompleteListener{task ->
                     if (task.isSuccessful) {
                         val user = mAuth.currentUser
-                        val intent = Intent(context, MainActivity::class.java)
+                        val intent = Intent(context, WelcomePage::class.java)
                         startActivity(intent)
                         Toast.makeText(context, "Authentication Successful", Toast.LENGTH_SHORT)
                             .show()
