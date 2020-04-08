@@ -23,13 +23,11 @@ class ExerciseHolder(inflater: LayoutInflater, parent: ViewGroup) :
 class ExerciseAdapter(private val list : ArrayList<String>)
     : RecyclerView.Adapter<ExerciseHolder>(), Filterable {
 
-//    private val names = list.map {it.activity}
     private var filteredExerciseList = ArrayList<String>()
 
 
     init {
         filteredExerciseList = list
-//        print(list)
 
     }
 

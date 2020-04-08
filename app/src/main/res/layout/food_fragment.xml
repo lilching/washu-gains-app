@@ -30,7 +30,7 @@
             android:layout_weight="0.2"
             app:srcCompat="@mipmap/ic_camera"
             />
-        <EditText
+        <androidx.appcompat.widget.SearchView
             android:id="@+id/food_search"
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -40,6 +40,8 @@
             android:textColor="@color/colorPrimaryDark"
             android:layout_weight="0.8"
             android:layout_gravity="center"
+            app:iconifiedByDefault="false"
+            app:queryHint="Enter Food"
             />
 
     </LinearLayout>

@@ -41,7 +41,7 @@
             android:layout_weight="0.8"
             android:layout_gravity="center"
             app:iconifiedByDefault="false"
-            app:queryHint="Enter Name"
+            app:queryHint="Enter Exercise"
             />
 
     </LinearLayout>

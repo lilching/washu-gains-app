@@ -3,10 +3,14 @@ package com.example.washugains.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.washugains.DataClass.Food
 import com.example.washugains.R
+import java.util.*
+import kotlin.collections.ArrayList
 
 class FoodViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.food_list_row, parent, false)) {
@@ -28,8 +32,14 @@ class FoodViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     }
 }
 
-class FoodAdapter(private val list : ArrayList<Food>)
-    : RecyclerView.Adapter<FoodViewHolder>() {
+class FoodAdapter(private val list : ArrayList<Food>, private val listString : ArrayList<String>)
+    : RecyclerView.Adapter<FoodViewHolder>(), Filterable {
+
+    private var filteredFoodList = ArrayList<Food>()
+
+    init {
+        filteredFoodList = list
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -37,10 +47,40 @@ class FoodAdapter(private val list : ArrayList<Food>)
     }
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
-        holder.bind(list[position])
+        holder.bind(filteredFoodList[position])
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return filteredFoodList.size
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                if (charSearch.isEmpty()) {
+                    filteredFoodList = list
+                }
+                else {
+                    val filteredResults = ArrayList<Food>()
+                    for (row in list) {
+                        if (row.name.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
+                            filteredResults.add(row)
+                        }
+                    }
+                    filteredFoodList = filteredResults
+                }
+                val finalFiltered = FilterResults()
+                finalFiltered.values = filteredFoodList
+                return finalFiltered
+
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                filteredFoodList = results?.values as ArrayList<Food>
+                notifyDataSetChanged()
+            }
+        }
     }
 }
