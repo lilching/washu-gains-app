@@ -46,6 +46,7 @@ class SignUpPage : Fragment() {
         signUpButton.setOnClickListener {
             val mAuth = FirebaseAuth.getInstance()
             val username = userSignUpInput.text.toString()
+            val calories = 0
             mAuth.createUserWithEmailAndPassword(
                 emailSignUpInput.text.toString(),
                 passSignUpInput.text.toString()
@@ -63,7 +64,8 @@ class SignUpPage : Fragment() {
                         //bundle information in created data class UserInformation
                         val userInfo =
                             UserInformation(
-                                username
+                                username,
+                                calories
                             )
 
                         val userMap: MutableMap<String, Any> = HashMap()
@@ -78,6 +80,7 @@ class SignUpPage : Fragment() {
                             .show()
                         val intent = Intent(context, WelcomePage::class.java)
                         intent.putExtra("username", username)
+                        intent.putExtra("calories", calories)
                         startActivity(intent)
                     }
                     else {
