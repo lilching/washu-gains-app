@@ -61,5 +61,8 @@ dependencies {
     //for the segmented control UI library
     implementation 'info.hoang8f:android-segmented:1.0.6'
 
+    //for the recyclerview divider library
+    implementation 'com.github.sakebook:MultiLineDivider:0.2.0@aar'
+
 
 }
