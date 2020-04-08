@@ -76,7 +76,10 @@ class ExerciseFragment : Fragment() {
                 return false
             }
         })
+    }
 
-
+    fun caloriesBurned(MET: Int, time: Int, weight: Int): Int{
+        val calories = ((MET*weight/2.2)*time/60) as Int
+        return calories
     }
 }
