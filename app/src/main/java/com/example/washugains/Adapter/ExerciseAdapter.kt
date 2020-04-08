@@ -1,35 +1,69 @@
 package com.example.washugains.Adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.washugains.DataClass.Exercise
 import com.example.washugains.R
+import kotlinx.android.synthetic.main.exercise_list_row.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
-class ExerciseViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-    RecyclerView.ViewHolder(inflater.inflate(R.layout.exercise_list_row, parent, false)) {
 
-    private val exerciseInfo: TextView = itemView.findViewById(R.id.exerciseRow)
+class ExerciseAdapter(private val list : ArrayList<String>)
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
 
-    fun bind(info : Exercise){
-        exerciseInfo.text = info.activity
-    }
-}
+//    private val names = list.map {it.activity}
+    private var filteredExerciseList = ArrayList<String>()
 
-class ExerciseAdapter(private val list : ArrayList<Exercise>)
-    : RecyclerView.Adapter<ExerciseViewHolder>() {
+    class ExerciseHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        return ExerciseViewHolder(inflater, parent)
+    init {
+        filteredExerciseList = list
     }
 
-    override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
-        holder.bind(list[position])
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.exercise_list_row, parent, false)
+        return ExerciseHolder(inflater)
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        holder.itemView.exerciseRow.text = filteredExerciseList[position]
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return filteredExerciseList.size
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                if (charSearch.isEmpty()) {
+                    filteredExerciseList = list
+                }
+                else {
+                    val filteredResults = ArrayList<String>()
+                    for (row in list) {
+                        if (row.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
+                            filteredResults.add(row)
+                        }
+                    }
+                    filteredExerciseList = filteredResults
+                }
+                val finalFiltered = FilterResults()
+                finalFiltered.values = filteredExerciseList
+                return finalFiltered
+            }
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                filteredExerciseList = results?.values as ArrayList<String>
+                notifyDataSetChanged()
+            }
+        }
     }
 }

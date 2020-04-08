@@ -1,9 +1,13 @@
 package com.example.washugains.Fragment.InputFragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,10 +16,14 @@ import com.example.washugains.DataClass.Exercise
 import com.example.washugains.R
 import com.google.firebase.database.*
 import com.sakebook.android.library.multilinedevider.MultiLineDivider
+import kotlinx.android.synthetic.main.exercise_fragment.*
 
 class ExerciseFragment : Fragment() {
 
     val exerciseList : ArrayList<Exercise> = ArrayList()
+    var exerciseString : ArrayList<String> = ArrayList()
+
+    private lateinit var exerciseSearch : SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +37,7 @@ class ExerciseFragment : Fragment() {
         super.onStart()
 
         val recyclerView = view?.findViewById<RecyclerView>(R.id.exerciseRecyclerView)
-        val adapter = ExerciseAdapter(exerciseList)
+        val adapter = ExerciseAdapter(exerciseString)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(context)
         val multiLineDivider = MultiLineDivider(context!!)
@@ -44,11 +52,28 @@ class ExerciseFragment : Fragment() {
                     val exercise = productSnapshot.getValue(Exercise::class.java)
                     exerciseList.add(exercise!!)
                 }
+                exerciseString = exerciseList.map {it.activity} as ArrayList<String>
+//                for (i in exerciseString) {
+//                    println(i)
+//                }
                 adapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(p0: DatabaseError) {
                 throw p0.toException()
+            }
+        })
+
+        //grabs editText from exercise_fragment
+        exerciseSearch = exercise_search
+        exerciseSearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                adapter.filter.filter(query)
+                return false
             }
         })
 
