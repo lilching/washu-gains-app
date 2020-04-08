@@ -55,10 +55,6 @@ class ExerciseFragment : Fragment() {
                         exerciseString.add(exercise.activity)
                     }
                 }
-               // exerciseString = exerciseList.map {it.activity} as ArrayList<String>
-//               for (i in exerciseString) {
-//                   println(i)
-//               }
                 adapter.notifyDataSetChanged()
             }
 
@@ -67,7 +63,7 @@ class ExerciseFragment : Fragment() {
             }
         })
 
-        //grabs editText from exercise_fragment
+        //grabs searchView from exercise_fragment
         exerciseSearch = exercise_search
         exerciseSearch.setOnQueryTextListener(object: androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
