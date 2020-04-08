@@ -5,7 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.WelcomePage">
-
+    <ImageView
+        android:id="@+id/camera_button"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/segmented2"
+        app:layout_constraintEnd_toStartOf="@+id/editText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/ic_camera" />
     <EditText
         android:id="@+id/editText"
         android:layout_width="308dp"
@@ -13,7 +21,7 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="Name"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.805"
@@ -62,15 +70,6 @@
         android:layout_marginHorizontal="20dp"
         />
 
-    <ImageView
-        android:id="@+id/camera_button"
-        android:layout_width="53dp"
-        android:layout_height="53dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/segmented2"
-        app:layout_constraintEnd_toStartOf="@+id/editText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/ic_camera" />
 
     <LinearLayout
         android:id="@+id/add_buttonLayout"
