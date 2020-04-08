@@ -51,11 +51,14 @@ class ExerciseFragment : Fragment() {
                 for (productSnapshot in dataSnapshot.children) {
                     val exercise = productSnapshot.getValue(Exercise::class.java)
                     exerciseList.add(exercise!!)
+                    if (exercise!=null){
+                        exerciseString.add(exercise.activity)
+                    }
                 }
-                exerciseString = exerciseList.map {it.activity} as ArrayList<String>
-//                for (i in exerciseString) {
-//                    println(i)
-//                }
+               // exerciseString = exerciseList.map {it.activity} as ArrayList<String>
+//               for (i in exerciseString) {
+//                   println(i)
+//               }
                 adapter.notifyDataSetChanged()
             }
 
