@@ -26,13 +26,16 @@
         <activity android:name=".Activity.WelcomePage">
         </activity>
 
-        <activity android:name=".Activity.BottomTabs.AddPage">
+        <activity android:name=".Activity.BottomTabs.AddPage"
+            android:windowSoftInputMode="adjustPan"
+            >
         </activity>
 
         <activity android:name=".Activity.BottomTabs.InfoPage">
         </activity>
 
-        <activity android:name=".Activity.BottomTabs.ProgressPage">
+        <activity android:name=".Activity.BottomTabs.ProgressPage"
+            >
         </activity>
 
     </application>

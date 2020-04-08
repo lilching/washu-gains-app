@@ -23,7 +23,7 @@ class ExerciseFragment : Fragment() {
     val exerciseList : ArrayList<Exercise> = ArrayList()
     var exerciseString : ArrayList<String> = ArrayList()
 
-    private lateinit var exerciseSearch : SearchView
+    private lateinit var exerciseSearch : androidx.appcompat.widget.SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,13 +69,14 @@ class ExerciseFragment : Fragment() {
 
         //grabs editText from exercise_fragment
         exerciseSearch = exercise_search
-        exerciseSearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+        exerciseSearch.setOnQueryTextListener(object: androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
                 return false
             }
 
             override fun onQueryTextSubmit(query: String?): Boolean {
-                adapter.filter.filter(query)
+//                adapter.filter.filter(query)
                 return false
             }
         })

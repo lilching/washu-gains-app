@@ -29,7 +29,7 @@ class ExerciseAdapter(private val list : ArrayList<String>)
 
     init {
         filteredExerciseList = list
-        print(list)
+//        print(list)
 
     }
 
@@ -67,7 +67,6 @@ class ExerciseAdapter(private val list : ArrayList<String>)
                 return finalFiltered
             }
 
-            @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 filteredExerciseList = results?.values as ArrayList<String>
                 notifyDataSetChanged()

@@ -24,23 +24,25 @@
         android:layout_marginRight="10dp"
         >
 
-    <ImageView
-        android:id="@+id/exercise_camera"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_weight="0.2"
-        app:srcCompat="@mipmap/ic_camera"
-        />
-    <SearchView
-        android:id="@+id/exercise_search"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:inputType="textPersonName"
-        android:textSize="20sp"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_weight="0.8"
-        android:layout_gravity="center"
-        />
+        <ImageView
+            android:id="@+id/exercise_camera"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="0.2"
+            app:srcCompat="@mipmap/ic_camera"
+            />
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/exercise_search"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:inputType="textPersonName"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_weight="0.8"
+            android:layout_gravity="center"
+            app:iconifiedByDefault="false"
+            app:queryHint="Enter Name"
+            />
 
     </LinearLayout>
 
