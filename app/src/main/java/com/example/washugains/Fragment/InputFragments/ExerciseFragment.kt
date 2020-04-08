@@ -11,6 +11,7 @@ import com.example.washugains.Adapter.ExerciseAdapter
 import com.example.washugains.DataClass.Exercise
 import com.example.washugains.R
 import com.google.firebase.database.*
+import com.sakebook.android.library.multilinedevider.MultiLineDivider
 
 class ExerciseFragment : Fragment() {
 
@@ -31,6 +32,8 @@ class ExerciseFragment : Fragment() {
         val adapter = ExerciseAdapter(exerciseList)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(context)
+        val multiLineDivider = MultiLineDivider(context!!)
+        recyclerView?.addItemDecoration(multiLineDivider)
 
         val ref = FirebaseDatabase.getInstance().getReference("sports")
         ref.addValueEventListener(object : ValueEventListener {
