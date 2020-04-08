@@ -14,6 +14,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.sakebook.android.library.multilinedevider.MultiLineDivider
 
 class FoodFragment : Fragment() {
 
@@ -38,6 +39,8 @@ class FoodFragment : Fragment() {
         val adapter = FoodAdapter(foodList)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(context)
+        val multiLineDivider = MultiLineDivider(context!!)
+        recyclerView?.addItemDecoration(multiLineDivider)
 
         val ref = FirebaseDatabase.getInstance().getReference("food")
         ref.addValueEventListener(object : ValueEventListener {

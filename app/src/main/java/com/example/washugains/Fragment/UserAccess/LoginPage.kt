@@ -15,6 +15,7 @@ import com.example.washugains.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.login_page.*
+import kotlinx.android.synthetic.main.welcome_page.*
 
 class LoginPage : Fragment() {
 
@@ -56,10 +57,23 @@ class LoginPage : Fragment() {
                 .addOnCompleteListener{task ->
                     if (task.isSuccessful) {
                         val user = mAuth.currentUser
-                        val intent = Intent(context, WelcomePage::class.java)
-                        startActivity(intent)
-                        Toast.makeText(context, "Authentication Successful", Toast.LENGTH_SHORT)
-                            .show()
+                        db = FirebaseFirestore.getInstance()
+                        if (user?.uid != null) {
+                            //retrieve data from Firebase
+                            db.collection("users").document(user.uid).get()
+
+                                .addOnSuccessListener { document ->
+                                    if (document != null) {
+                                        val data = document.data
+                                        val username = data?.get("username") as String
+                                        val intent = Intent(context, WelcomePage::class.java)
+                                        intent.putExtra("username",username)
+                                        startActivity(intent)
+                                        Toast.makeText(context, "Authentication Successful", Toast.LENGTH_SHORT)
+                                            .show()
+                                    }
+                                }
+                        }
                     }
                     else {
                         // If sign in fails, display a message to the user.
