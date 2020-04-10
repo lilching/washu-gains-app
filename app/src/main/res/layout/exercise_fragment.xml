@@ -8,41 +8,39 @@
         android:id="@+id/exerciseText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
         android:gravity="center"
-        android:text="ExerciseFragment"
+        android:text="Exercise"
         android:textSize="40dp"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/exerciseSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/exerciseText"
+        android:layout_width="410dp"
+        android:layout_height="39dp"
         android:orientation="horizontal"
         android:weightSum="1"
-        android:layout_marginRight="10dp"
-        >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseText">
 
         <ImageView
             android:id="@+id/exercise_camera"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="0.2"
-            app:srcCompat="@mipmap/ic_camera"
-            />
+            android:layout_width="6dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            app:srcCompat="@mipmap/ic_camera" />
+
         <androidx.appcompat.widget.SearchView
             android:id="@+id/exercise_search"
             android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:inputType="textPersonName"
-            android:textSize="20sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_weight="0.8"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_weight="0.9"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20dp"
             app:iconifiedByDefault="false"
-            app:queryHint="Enter Exercise"
-            />
+            app:queryHint="Enter Food" />
 
     </LinearLayout>
 
