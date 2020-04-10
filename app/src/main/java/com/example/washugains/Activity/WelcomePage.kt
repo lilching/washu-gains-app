@@ -59,6 +59,8 @@ class WelcomePage : AppCompatActivity() {
 
         infoButton.setOnClickListener {
             val intent = Intent(this, InfoPage::class.java)
+            intent.putExtra("username", username)
+            intent.putExtra("calories", calories)
             startActivity(intent)
         }
 

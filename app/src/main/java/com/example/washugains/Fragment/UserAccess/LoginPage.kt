@@ -66,8 +66,8 @@ class LoginPage : Fragment() {
                                     if (document != null) {
                                         val data = document.data
                                         val username = data?.get("username") as String
-//                                        val calories = data?.get("calories") as Int
-                                        val calories = 0
+                                        val calories = data?.get("calories") as String
+//                                        val calories = 0
                                         val intent = Intent(context, WelcomePage::class.java)
                                         intent.putExtra("username",username)
                                         intent.putExtra("calories", calories)

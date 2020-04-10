@@ -8,9 +8,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.washugains.Activity.BottomTabs.AddPage
 import com.example.washugains.R
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.input_page.*
 
 class InputPage: AppCompatActivity() {
+
+    private lateinit var db : FirebaseFirestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.input_page)
@@ -19,15 +25,29 @@ class InputPage: AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        db = FirebaseFirestore.getInstance()
         val username = intent?.getStringExtra("username")
-        val calories = intent?.getStringExtra("calories")
+        var calories = intent?.getStringExtra("calories")
 
 
         continueButton.setOnClickListener{
             var height = heightInput.text.toString()
             var weight = weightInput.text.toString()
+            calories = caloriesInput.text.toString()
 
-            if (height != "" && weight != "") {
+            db.collection("users").whereEqualTo("username", username).get()
+                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                    if (task.isSuccessful) {
+                        for (document in task.result!!) {
+                            val reference = db.collection("users").document(document.id)
+                            reference.update("calories", calories).addOnSuccessListener {
+                                println("calories updated")
+                            }
+                        }
+                    }
+                })
+
+            if (height != "" && weight != "" && calories != "") {
                 val intent = Intent(this, WelcomePage::class.java)
                 intent.putExtra("username", username)
                 intent.putExtra("calories", calories)

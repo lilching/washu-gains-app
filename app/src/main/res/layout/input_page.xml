@@ -35,6 +35,16 @@
         android:hint="Enter Weight"
         />
 
+    <EditText
+        android:id="@+id/caloriesInput"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toBottomOf="@id/weightInput"
+        android:layout_marginTop="50dp"
+        android:inputType="number"
+        android:hint="Enter Daily Calorie Goal"
+        />
+
     <Button
         android:layout_width="match_parent"
         android:id="@+id/continueButton"
@@ -44,7 +54,7 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:layout_marginTop="50dp"
-        app:layout_constraintTop_toBottomOf="@id/weightInput"
+        app:layout_constraintTop_toBottomOf="@id/caloriesInput"
         />
 
 
