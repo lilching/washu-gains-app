@@ -37,6 +37,8 @@
         <activity android:name=".Activity.BottomTabs.ProgressPage"
             >
         </activity>
+        <activity android:name=".Activity.InputPage"
+            ></activity>
 
     </application>
 

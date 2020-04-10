@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.washugains.Activity.InputPage
 import com.example.washugains.Activity.WelcomePage
 import com.example.washugains.R
 import com.example.washugains.DataClass.UserInformation
@@ -78,7 +79,7 @@ class SignUpPage : Fragment() {
 
                         Toast.makeText(context, "Account Created", Toast.LENGTH_SHORT)
                             .show()
-                        val intent = Intent(context, WelcomePage::class.java)
+                        val intent = Intent(context, InputPage::class.java)
                         intent.putExtra("username", username)
                         intent.putExtra("calories", calories)
                         startActivity(intent)
