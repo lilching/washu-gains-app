@@ -52,7 +52,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="28dp"
                     android:layout_marginLeft="28dp"
-                    android:text="Protein: 100g" />
+                    android:text="Protein: 100g"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hello"
+                    />
+
             </LinearLayout>
 
             <LinearLayout
@@ -73,7 +81,9 @@
                     android:layout_marginStart="28dp"
                     android:layout_marginLeft="28dp"
                     android:text="Fat: 100g" />
+
             </LinearLayout>
+
         </LinearLayout>
 
     </RelativeLayout>
@@ -87,11 +97,7 @@
         app:layout_constraintTop_toBottomOf="@id/parentFoodLay"
         >
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello"
-            />
+
 
         <TextView
             android:id="@+id/childFoodView"
