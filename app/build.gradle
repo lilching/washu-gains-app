@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.washugains"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -60,7 +60,11 @@ dependencies {
 
     //for the recyclerview divider library
     implementation 'com.github.sakebook:MultiLineDivider:0.2.0@aar'
-    
 
-
+    //AnyChart is trash, so we are using philjay
+   implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+   // implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
 }
+
+
+

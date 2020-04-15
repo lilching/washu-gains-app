@@ -9,6 +9,7 @@ import com.example.washugains.Fragment.InputFragments.FoodFragment
 import com.example.washugains.R
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class AddPage : AppCompatActivity() {
 
     private lateinit var infoButton : Button
@@ -31,7 +32,6 @@ class AddPage : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
         //grabs element from activity_main
         infoButton = addInfo
         progressButton = addProgress

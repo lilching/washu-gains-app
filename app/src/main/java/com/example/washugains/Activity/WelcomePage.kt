@@ -1,16 +1,18 @@
 package com.example.washugains.Activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
 import com.example.washugains.Activity.BottomTabs.AddPage
 import com.example.washugains.Activity.BottomTabs.InfoPage
 import com.example.washugains.Activity.BottomTabs.ProgressPage
 import com.example.washugains.R
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.welcome_page.*
+
+
 
 class WelcomePage : AppCompatActivity() {
 
@@ -22,31 +24,13 @@ class WelcomePage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.welcome_page)
+
     }
 
     override fun onStart() {
         super.onStart()
+      //  val dailyInfoList=intent.getParcelableArrayListExtra<DailyInfo>("dailyInfoList")
 
-        //get user information (i.e. username) from Firebase or SignUpPage
-      //  val mAuth = FirebaseAuth.getInstance()
-      //  val user = mAuth.currentUser
-    //    db = FirebaseFirestore.getInstance()
-//        if (user?.uid != null) {
-//            //retrieve data from Firebase
-//            db.collection("users").document(user.uid).get()
-//
-//                .addOnSuccessListener { document ->
-//                    if (document != null) {
-//                        val data = document.data
-//                        val username = data?.get("username") as String
-//
-//                        //grabs text from welcome_page
-//                        if (username != null) {
-//                            usernameText.text = username
-//                        }
-//                    }
-//                }
-//        }
         val username=intent?.getStringExtra("username")
         val calories=intent?.getStringExtra("calories")
         if (username != null) {
@@ -66,6 +50,7 @@ class WelcomePage : AppCompatActivity() {
 
         progressButton.setOnClickListener {
             val intent = Intent(this, ProgressPage::class.java)
+           // intent.putExtra("dailyInfoList",dailyInfoList)
             startActivity(intent)
         }
 

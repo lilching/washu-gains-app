@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.washugains.Activity.BottomTabs.AddPage
+import com.example.washugains.DataClass.DailyInfo
 import com.example.washugains.R
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.FirebaseFirestore
@@ -26,8 +27,9 @@ class InputPage: AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         db = FirebaseFirestore.getInstance()
-        val username = intent?.getStringExtra("username")
+        val username = intent.getStringExtra("username")
         var calories = intent?.getStringExtra("calories")
+        val dailyInfoList=intent.getParcelableArrayListExtra<DailyInfo>("dailyInfoList")
 
 
         continueButton.setOnClickListener{
@@ -51,6 +53,7 @@ class InputPage: AppCompatActivity() {
                 val intent = Intent(this, WelcomePage::class.java)
                 intent.putExtra("username", username)
                 intent.putExtra("calories", calories)
+                intent.putExtra("dailyInfoList",dailyInfoList)
                 startActivity(intent)
             }
             else{

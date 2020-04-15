@@ -25,10 +25,6 @@ class FoodFragment : Fragment() {
     val foodList : ArrayList<Food> = ArrayList()
     val foodString : ArrayList<String> = ArrayList()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
