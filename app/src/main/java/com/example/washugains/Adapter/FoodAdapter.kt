@@ -8,12 +8,15 @@ import android.widget.Filterable
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.washugains.DataClass.Food
+import com.example.washugains.ExpandableLayout
 import com.example.washugains.R
+import kotlinx.android.synthetic.main.expandable_exercise_row.view.*
+import kotlinx.android.synthetic.main.expandable_food_row.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 class FoodViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-    RecyclerView.ViewHolder(inflater.inflate(R.layout.food_list_row, parent, false)) {
+    RecyclerView.ViewHolder(inflater.inflate(R.layout.expandable_food_row, parent, false)) {
 
     private val name: TextView = itemView.findViewById(R.id.foodNameText)
     private val calories: TextView=itemView.findViewById(R.id.caloriesText)
@@ -36,6 +39,7 @@ class FoodAdapter(private val list : ArrayList<Food>, private val listString : A
     : RecyclerView.Adapter<FoodViewHolder>(), Filterable {
 
     private var filteredFoodList = ArrayList<Food>()
+    private val expandedPositionSet : HashSet<Int> = HashSet()
 
     init {
         filteredFoodList = list
@@ -48,6 +52,18 @@ class FoodAdapter(private val list : ArrayList<Food>, private val listString : A
 
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         holder.bind(filteredFoodList[position])
+        holder.itemView.childFoodView.text = "CHILD"
+
+        holder.itemView.expandableFood.setOnExpandListener(object : ExpandableLayout.OnExpandListener {
+            override fun onExpand(expanded: Boolean) {
+                if (expandedPositionSet.contains(position)) {
+                    expandedPositionSet.remove(position)
+                }
+                else {
+                    expandedPositionSet.add(position)
+                }
+            }
+        })
     }
 
     override fun getItemCount(): Int {

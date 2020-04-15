@@ -60,6 +60,7 @@ dependencies {
 
     //for the recyclerview divider library
     implementation 'com.github.sakebook:MultiLineDivider:0.2.0@aar'
+    
 
 
 }

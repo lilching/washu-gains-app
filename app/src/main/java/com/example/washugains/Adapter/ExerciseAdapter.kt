@@ -6,14 +6,17 @@ import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.washugains.ExpandableLayout
 import com.example.washugains.R
+import kotlinx.android.synthetic.main.expandable_exercise_row.view.*
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 
 class ExerciseHolder(inflater: LayoutInflater, parent: ViewGroup) :
-    RecyclerView.ViewHolder(inflater.inflate(R.layout.exercise_list_row, parent, false)) {
+    RecyclerView.ViewHolder(inflater.inflate(R.layout.expandable_exercise_row, parent, false)) {
 
-    private val info: TextView = itemView.findViewById(R.id.exerciseRow)
+    private val info: TextView = itemView.findViewById(R.id.parentView)
 
     fun bind(exercise: String){
         info.text=exercise
@@ -24,6 +27,8 @@ class ExerciseAdapter(private val list : ArrayList<String>)
     : RecyclerView.Adapter<ExerciseHolder>(), Filterable {
 
     private var filteredExerciseList = ArrayList<String>()
+    private val expandedPositionSet : HashSet<Int> = HashSet()
+
 
 
     init {
@@ -37,7 +42,20 @@ class ExerciseAdapter(private val list : ArrayList<String>)
     }
 
     override fun onBindViewHolder(holder: ExerciseHolder, position: Int) {
-        holder.bind(filteredExerciseList[position])
+//        holder.bind(filteredExerciseList[position])
+        holder.itemView.parentView.text = filteredExerciseList[position]
+        holder.itemView.childView.text = "CHILD"
+
+        holder.itemView.expandable.setOnExpandListener(object : ExpandableLayout.OnExpandListener {
+            override fun onExpand(expanded: Boolean) {
+                if (expandedPositionSet.contains(position)) {
+                    expandedPositionSet.remove(position)
+                }
+                else {
+                    expandedPositionSet.add(position)
+                }
+            }
+        })
     }
 
     override fun getItemCount(): Int {
