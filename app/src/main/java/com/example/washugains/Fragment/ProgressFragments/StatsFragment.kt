@@ -67,7 +67,7 @@ class StatsFragment(val dateMap: HashMap<String,DailyInfo>) : Fragment(){
                         entries.add(PieEntry(roundTo2Helper(dailyData.fat), "Fat"))
                         entries.add(PieEntry(roundTo2Helper(dailyData.carb), "Carb"))
                         val set = PieDataSet(entries, "What you ate")
-                        set.colors = ColorTemplate.LIBERTY_COLORS.toList()
+                        set.colors = ColorTemplate.VORDIPLOM_COLORS.toList()
                         set.sliceSpace=4f
 
                         val data = PieData(set)
