@@ -4,5 +4,7 @@ package com.example.washugains.DataClass
 //information to be associated with each account
 data class UserInformation(
     val username : String,
-    val calories: Int
+    val calories: Int,
+    val height: Int,
+    val weight: Int
 )

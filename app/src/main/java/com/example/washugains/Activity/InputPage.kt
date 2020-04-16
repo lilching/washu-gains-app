@@ -45,6 +45,12 @@ class InputPage: AppCompatActivity() {
                             reference.update("calories", calories).addOnSuccessListener {
                                 println("calories updated")
                             }
+                            reference.update("height", height).addOnSuccessListener {
+                                println("height updated")
+                            }
+                            reference.update("weight", weight).addOnSuccessListener {
+                                println("weight updated")
+                            }
                         }
                     }
                 })
@@ -57,7 +63,7 @@ class InputPage: AppCompatActivity() {
                 startActivity(intent)
             }
             else{
-                Toast.makeText(this, "Please fill in both fields.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_LONG).show()
             }
         }
     }
