@@ -7,14 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.washugains.Fragment.InputFragments.ExerciseFragment
 import com.example.washugains.Fragment.InputFragments.FoodFragment
 import com.example.washugains.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firestore.admin.v1beta1.Progress
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class AddPage : AppCompatActivity() {
 
-    private lateinit var infoButton : Button
-    private lateinit var progressButton : Button
-    private lateinit var addButton : Button
+    private lateinit var bottomNav : BottomNavigationView
     private lateinit var foodButton : Button
     private lateinit var exerciseButton : Button
 
@@ -33,18 +33,20 @@ class AddPage : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         //grabs element from activity_main
-        infoButton = addInfo
-        progressButton = addProgress
-        addButton = addAdd
-
-        infoButton.setOnClickListener {
-            val intent = Intent(this, InfoPage::class.java)
-            startActivity(intent)
-        }
-
-        progressButton.setOnClickListener {
-            val intent = Intent(this, ProgressPage::class.java)
-            startActivity(intent)
+        bottomNav = bottomInfoBar
+        bottomNav.selectedItemId = R.id.tabs_add
+        bottomNav.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.tabs_progress -> {
+                    val intent = Intent(this, ProgressPage::class.java)
+                    startActivity(intent)
+                }
+                R.id.tabs_person -> {
+                    val intent = Intent(this, InfoPage::class.java)
+                    startActivity(intent)
+                }
+            }
+            return@setOnNavigationItemSelectedListener true
         }
 
         foodButton = button21

@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/add_buttonLayout"
+        app:layout_constraintBottom_toTopOf="@+id/bottomInfoBar"
         app:layout_constraintHeight_percent="0.8"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -52,40 +52,16 @@
 
     </FrameLayout>
 
-    <LinearLayout
-        android:id="@+id/add_buttonLayout"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomInfoBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:weightSum="3"
-        >
-        <Button
-            android:id="@+id/addAdd"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:textSize="20dp"
-            android:layout_weight="1"
-            android:text="+"
-            />
-        <Button
-            android:id="@+id/addProgress"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:textSize="20dp"
-
-            android:layout_weight="1"
-            android:text="Progress"
-            />
-        <Button
-            android:id="@+id/addInfo"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:textSize="20dp"
-            android:layout_weight="1"
-            android:text="My Info"
-            />
-    </LinearLayout>
-
+        app:menu="@layout/bottom_nav_tabs"
+        app:itemIconSize="32dp"
+        app:itemTextColor="@layout/bottom_nav_colors"
+        app:itemIconTint="@layout/bottom_nav_colors"
+        android:background="#FAFAFA"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

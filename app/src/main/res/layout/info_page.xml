@@ -95,40 +95,18 @@
             />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/info_buttonLayout"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomInfoBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:weightSum="3"
-        >
-        <Button
-            android:id="@+id/infoAdd"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:textSize="20dp"
-            android:layout_weight="1"
-            android:text="+"
-            />
-        <Button
-            android:id="@+id/infoProgress"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:textSize="20dp"
+        app:menu="@layout/bottom_nav_tabs"
+        app:itemIconSize="32dp"
+        app:itemTextColor="@layout/bottom_nav_colors"
+        app:itemIconTint="@layout/bottom_nav_colors"
+        android:background="#FAFAFA"
+        />
 
-            android:layout_weight="1"
-            android:text="Progress"
-            />
-        <Button
-            android:id="@+id/infoInfo"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:textSize="20dp"
-            android:layout_weight="1"
-            android:text="My Info"
-            />
-    </LinearLayout>
 
 
 

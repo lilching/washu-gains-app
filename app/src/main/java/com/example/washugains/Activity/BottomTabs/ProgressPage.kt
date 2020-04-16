@@ -15,6 +15,7 @@ import com.example.washugains.Fragment.ProgressFragments.AddedExerciseFragment
 import com.example.washugains.Fragment.ProgressFragments.AddedFoodFragment
 import com.example.washugains.Fragment.ProgressFragments.StatsFragment
 import com.example.washugains.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.progress_page.*
@@ -22,9 +23,7 @@ import java.time.LocalDate
 
 class ProgressPage : AppCompatActivity() {
 
-    private lateinit var infoButton : Button
-    private lateinit var progressButton : Button
-    private lateinit var addButton : Button
+    private lateinit var bottomNav : BottomNavigationView
     private lateinit var db : FirebaseFirestore
     private lateinit var dateMap:HashMap<String,DailyInfo>
 
@@ -78,19 +77,22 @@ class ProgressPage : AppCompatActivity() {
         }
 
         //grabs element from progress_page
-        infoButton = progressInfo
-        progressButton = progressProgress
-        addButton = progressAdd
-
-        infoButton.setOnClickListener {
-            val intent = Intent(this, InfoPage::class.java)
-            startActivity(intent)
+        bottomNav = bottomInfoBar
+        bottomNav.selectedItemId = R.id.tabs_progress
+        bottomNav.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.tabs_add -> {
+                    val intent = Intent(this, AddPage::class.java)
+                    startActivity(intent)
+                }
+                R.id.tabs_person -> {
+                    val intent = Intent(this, InfoPage::class.java)
+                    startActivity(intent)
+                }
+            }
+            return@setOnNavigationItemSelectedListener true
         }
 
-        addButton.setOnClickListener {
-            val intent = Intent(this, AddPage::class.java)
-            startActivity(intent)
-        }
     }
 
     inner class ProgressPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {

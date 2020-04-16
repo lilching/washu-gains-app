@@ -11,6 +11,7 @@ import com.example.washugains.Activity.BottomTabs.AddPage
 import com.example.washugains.Activity.BottomTabs.InfoPage
 import com.example.washugains.Activity.BottomTabs.ProgressPage
 import com.example.washugains.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.welcome_page.*
 
 
@@ -20,9 +21,7 @@ class WelcomePage : AppCompatActivity() {
 
 
   //  private lateinit var db : FirebaseFirestore
-    private lateinit var infoButton : Button
-    private lateinit var progressButton : Button
-    private lateinit var addButton : Button
+    private lateinit var bottomNav : BottomNavigationView
     private lateinit var inspireQuote : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,26 +54,24 @@ class WelcomePage : AppCompatActivity() {
           usernameText.text = username
         }
         //grabs element from welcome_page
-        infoButton = welcomeInfo
-        progressButton = welcomeProgress
-        addButton = welcomeAdd
-
-        infoButton.setOnClickListener {
-            val intent = Intent(this, InfoPage::class.java)
-            intent.putExtra("username", username)
-            intent.putExtra("calories", calories)
-            startActivity(intent)
-        }
-
-        progressButton.setOnClickListener {
-            val intent = Intent(this, ProgressPage::class.java)
-           // intent.putExtra("dailyInfoList",dailyInfoList)
-            startActivity(intent)
-        }
-
-        addButton.setOnClickListener {
-            val intent = Intent(this, AddPage::class.java)
-            startActivity(intent)
+        bottomNav = bottomInfoBar
+        bottomNav.selectedItemId = R.id.tabs_add
+        bottomNav.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.tabs_add -> {
+                    val intent = Intent(this, AddPage::class.java)
+                    startActivity(intent)
+                }
+                R.id.tabs_progress -> {
+                    val intent = Intent(this, ProgressPage::class.java)
+                    startActivity(intent)
+                }
+                R.id.tabs_person -> {
+                    val intent = Intent(this, InfoPage::class.java)
+                    startActivity(intent)
+                }
+            }
+            return@setOnNavigationItemSelectedListener true
         }
 
         inspireQuote = inspirationalQuote
