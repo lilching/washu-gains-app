@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.WelcomePage">
+        <activity android:name=".Activity.MainActivity">
         </activity>
 
         <activity android:name=".Activity.BottomTabs.AddPage"

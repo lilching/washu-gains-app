@@ -95,17 +95,6 @@
             />
     </LinearLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomInfoBar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@layout/bottom_nav_tabs"
-        app:itemIconSize="32dp"
-        app:itemTextColor="@layout/bottom_nav_colors"
-        app:itemIconTint="@layout/bottom_nav_colors"
-        android:background="#FAFAFA"
-        />
 
 
 

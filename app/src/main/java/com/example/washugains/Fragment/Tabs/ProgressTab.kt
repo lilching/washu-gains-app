@@ -1,12 +1,11 @@
-package com.example.washugains.Activity.BottomTabs
+package com.example.washugains.Fragment.Tabs
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -15,39 +14,38 @@ import com.example.washugains.Fragment.ProgressFragments.AddedExerciseFragment
 import com.example.washugains.Fragment.ProgressFragments.AddedFoodFragment
 import com.example.washugains.Fragment.ProgressFragments.StatsFragment
 import com.example.washugains.R
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.progress_page.*
 import java.time.LocalDate
 
-class ProgressPage : AppCompatActivity() {
+class ProgressTab : Fragment() {
 
-    private lateinit var bottomNav : BottomNavigationView
     private lateinit var db : FirebaseFirestore
     private lateinit var dateMap:HashMap<String,DailyInfo>
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.progress_page, container, false)
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-     //   val dailyInfoList=intent.getParcelableArrayListExtra<DailyInfo>("dailyInfoList")
-        setContentView(R.layout.progress_page)
-
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val fragmentAdapter =
             ProgressPagerAdapter(
-                supportFragmentManager
+                activity!!.supportFragmentManager
             )
 
 
         progressViewPager.adapter = fragmentAdapter
 
         progressTabsMain.setupWithViewPager(progressViewPager)
-    }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onStart() {
-        super.onStart()
         db= FirebaseFirestore.getInstance()
 
         //getting the data of the past month
@@ -74,23 +72,6 @@ class ProgressPage : AppCompatActivity() {
                     document.toObject(DailyInfo::class.java)?.let { dateMap.put(document.id, it) }
                 }
             }
-        }
-
-        //grabs element from progress_page
-        bottomNav = bottomInfoBar
-        bottomNav.selectedItemId = R.id.tabs_progress
-        bottomNav.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.tabs_add -> {
-                    val intent = Intent(this, AddPage::class.java)
-                    startActivity(intent)
-                }
-                R.id.tabs_person -> {
-                    val intent = Intent(this, InfoPage::class.java)
-                    startActivity(intent)
-                }
-            }
-            return@setOnNavigationItemSelectedListener true
         }
 
     }
