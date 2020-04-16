@@ -1,0 +1,28 @@
+
+
+    <menu
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+        <item
+            android:id="@+id/tabs_add"
+            android:icon="@drawable/ic_graph"
+            android:title="Discover"
+            />
+        <item
+            android:id="@+id/tabs_progress"
+            android:icon="@drawable/ic_insert_chart_outlined"
+            android:title="Dashboard"
+            />
+
+        <item
+            android:id="@+id/tabs_person"
+            android:icon="@drawable/ic_person"
+            android:title="My Info"
+            />
+
+    </menu>
+

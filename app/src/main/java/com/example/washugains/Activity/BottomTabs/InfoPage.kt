@@ -8,10 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.washugains.Activity.LandingPage
 import com.example.washugains.R
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.info_page.*
+
 
 class InfoPage : AppCompatActivity() {
 
@@ -22,6 +24,7 @@ class InfoPage : AppCompatActivity() {
     private lateinit var addButton : Button
     private lateinit var updateButton : Button
     private lateinit var logoutButton : Button
+    private lateinit var bottomBar : BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,21 +39,25 @@ class InfoPage : AppCompatActivity() {
         infoUserText.text = username
 
         //grab element from info_page
-        infoButton = infoInfo
-        progressButton = infoProgress
-        addButton = infoAdd
+        bottomBar = bottomInfoBar
         logoutButton = logout
         updateButton = myInfoInput
 
-        progressButton.setOnClickListener {
-            val intent = Intent(this, ProgressPage::class.java)
-            startActivity(intent)
+        bottomInfoBar.selectedItemId = R.id.tabs_person
+        bottomInfoBar.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.tabs_progress -> {
+                    val intent = Intent(this, ProgressPage::class.java)
+                    startActivity(intent)
+                }
+                R.id.tabs_add -> {
+                    val intent = Intent(this, AddPage::class.java)
+                    startActivity(intent)
+                }
+            }
+            return@setOnNavigationItemSelectedListener true
         }
 
-        addButton.setOnClickListener {
-            val intent = Intent(this, AddPage::class.java)
-            startActivity(intent)
-        }
 
         logoutButton.setOnClickListener {
             val mAuth = FirebaseAuth.getInstance()
