@@ -17,6 +17,9 @@
         android:theme="@style/AppTheme"
         tools:replace="android:name">
 
+
+        
+
         <activity android:name=".Activity.LandingPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
