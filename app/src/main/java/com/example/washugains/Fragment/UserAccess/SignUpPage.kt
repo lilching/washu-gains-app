@@ -53,7 +53,8 @@ class SignUpPage : Fragment() {
             val mAuth = FirebaseAuth.getInstance()
             val username = userSignUpInput.text.toString()
             val calories = 0
-            val height = 0
+            val feet = 0
+            val inches = 0
             val weight = 0
             mAuth.createUserWithEmailAndPassword(
                 emailSignUpInput.text.toString(),
@@ -74,7 +75,8 @@ class SignUpPage : Fragment() {
                             UserInformation(
                                 username,
                                 calories,
-                                height,
+                                feet,
+                                inches,
                                 weight
                             )
 
@@ -111,9 +113,9 @@ class SignUpPage : Fragment() {
                            // val dailyInfoList=ArrayList<DailyInfo>(dateMap.values as MutableCollection<out DailyInfo>)
                           //  intent.putExtra("dailyInfoList", dailyInfoList)
                             intent.putExtra("username", username)
-                            intent.putExtra("calories", calories)
-                            intent.putExtra("height", height)
-                            intent.putExtra("weight", weight)
+//                            intent.putExtra("calories", calories)
+//                            intent.putExtra("height", feet)
+//                            intent.putExtra("weight", weight)
                             startActivity(intent)
                         }
                     }

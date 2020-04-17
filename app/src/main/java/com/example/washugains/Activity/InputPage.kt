@@ -33,7 +33,8 @@ class InputPage: AppCompatActivity() {
 
 
         continueButton.setOnClickListener{
-            var height = heightInput.text.toString()
+            var feet = feetInput.text.toString()
+            var inches = inchInput.text.toString()
             var weight = weightInput.text.toString()
             calories = caloriesInput.text.toString()
 
@@ -45,8 +46,11 @@ class InputPage: AppCompatActivity() {
                             reference.update("calories", calories).addOnSuccessListener {
                                 println("calories updated")
                             }
-                            reference.update("height", height).addOnSuccessListener {
-                                println("height updated")
+                            reference.update("feet", feet).addOnSuccessListener {
+                                println("feet updated")
+                            }
+                            reference.update("inches", inches).addOnSuccessListener {
+                                println("inches updated")
                             }
                             reference.update("weight", weight).addOnSuccessListener {
                                 println("weight updated")
@@ -55,7 +59,7 @@ class InputPage: AppCompatActivity() {
                     }
                 })
 
-            if (height != "" && weight != "" && calories != "") {
+            if (inches != "" && feet != "" && weight != "" && calories != "") {
                 val intent = Intent(this, WelcomePage::class.java)
                 intent.putExtra("username", username)
                 intent.putExtra("calories", calories)

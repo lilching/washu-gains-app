@@ -49,7 +49,7 @@ class WelcomePage : AppCompatActivity() {
 
 
         val username=intent?.getStringExtra("username")
-        val calories=intent?.getStringExtra("calories")
+//        val calories=intent?.getStringExtra("calories")
         if (username != null) {
           usernameText.text = username
         }
