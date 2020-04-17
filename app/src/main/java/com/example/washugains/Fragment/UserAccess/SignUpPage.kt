@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.washugains.Activity.InputPage
-import com.example.washugains.Activity.WelcomePage
 import com.example.washugains.DataClass.DailyInfo
 import com.example.washugains.R
 import com.example.washugains.DataClass.UserInformation

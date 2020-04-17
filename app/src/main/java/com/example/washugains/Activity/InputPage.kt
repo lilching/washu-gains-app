@@ -1,12 +1,9 @@
 package com.example.washugains.Activity
 
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.washugains.Activity.BottomTabs.AddPage
 import com.example.washugains.DataClass.DailyInfo
 import com.example.washugains.R
 import com.google.android.gms.tasks.OnCompleteListener
@@ -33,8 +30,7 @@ class InputPage: AppCompatActivity() {
 
 
         continueButton.setOnClickListener{
-            var feet = feetInput.text.toString()
-            var inches = inchInput.text.toString()
+            var height = heightInput.text.toString()
             var weight = weightInput.text.toString()
             calories = caloriesInput.text.toString()
 
@@ -46,11 +42,8 @@ class InputPage: AppCompatActivity() {
                             reference.update("calories", calories).addOnSuccessListener {
                                 println("calories updated")
                             }
-                            reference.update("feet", feet).addOnSuccessListener {
-                                println("feet updated")
-                            }
-                            reference.update("inches", inches).addOnSuccessListener {
-                                println("inches updated")
+                            reference.update("height", height).addOnSuccessListener {
+                                println("height updated")
                             }
                             reference.update("weight", weight).addOnSuccessListener {
                                 println("weight updated")
@@ -59,8 +52,8 @@ class InputPage: AppCompatActivity() {
                     }
                 })
 
-            if (inches != "" && feet != "" && weight != "" && calories != "") {
-                val intent = Intent(this, WelcomePage::class.java)
+            if (height != "" && weight != "" && calories != "") {
+                val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("username", username)
                 intent.putExtra("calories", calories)
                 intent.putExtra("dailyInfoList",dailyInfoList)
