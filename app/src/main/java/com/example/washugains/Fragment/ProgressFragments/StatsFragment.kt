@@ -1,10 +1,5 @@
 package com.example.washugains.Fragment.ProgressFragments
 
-//import com.anychart.AnyChart
-//import com.anychart.AnyChartView
-//import com.anychart.chart.common.dataentry.DataEntry
-//import com.anychart.chart.common.dataentry.ValueDataEntry
-
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -28,6 +23,7 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.time.LocalDate
+import kotlin.math.roundToInt
 
 
 class StatsFragment() : Fragment(){
@@ -86,13 +82,9 @@ class StatsFragment() : Fragment(){
                         set.sliceSpace=4f
                         set.isHighlightEnabled=true
 
-                        //dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
                         set.setYValuePosition(PieDataSet.ValuePosition.INSIDE_SLICE)
 
-
                         val data = PieData(set)
-
-
 
                         pie.centerText="WHAT YOU ATE TODAY"
                         pie.setCenterTextTypeface(tf)
@@ -114,12 +106,17 @@ class StatsFragment() : Fragment(){
                         legend.form=Legend.LegendForm.CIRCLE
                         legend.textSize=15f
                         // set custom labels and colors
-                        val total=dailyData.sugars+dailyData.protein+dailyData.fat+dailyData.carb
-                        legend.entries[0].label= "Sugar:  "+roundTo2Helper(dailyData.sugars*100/total).toString()+"%"
-                        legend.entries[1].label= "Protein:  "+roundTo2Helper(dailyData.protein*100/total).toString()+"%"
-                        legend.entries[2].label= "Fat:  "+roundTo2Helper(dailyData.fat*100/total).toString()+"%"
-                        legend.entries[3].label= "Carb:  "+roundTo2Helper(dailyData.carb*100/total).toString()+"%"
-
+                        var total=dailyData.sugars+dailyData.protein+dailyData.fat+dailyData.carb
+                        if (total== 0.0) {
+                            total=1.0}
+                            legend.entries[0].label =
+                                "Sugar:  " + roundTo2Helper(dailyData.sugars * 100 / total).toString() + "%"
+                            legend.entries[1].label =
+                                "Protein:  " + roundTo2Helper(dailyData.protein * 100 / total).toString() + "%"
+                            legend.entries[2].label =
+                                "Fat:  " + roundTo2Helper(dailyData.fat * 100 / total).toString() + "%"
+                            legend.entries[3].label =
+                                "Carb:  " + roundTo2Helper(dailyData.carb * 100 / total).toString() + "%"
 
                         pie.invalidate()
                     }
@@ -130,7 +127,6 @@ class StatsFragment() : Fragment(){
     class GramValueFormatter: ValueFormatter(){
 
         override fun getPieLabel(value: Float, pieEntry: PieEntry?): String {
-          //  return super.getPieLabel(value, pieEntry)
             return pieEntry?.value.toString()+"g"
         }
 
@@ -139,9 +135,8 @@ class StatsFragment() : Fragment(){
     }
 
 
-    fun roundTo2Helper( num:Double):Float{
-        val ans=Math.round(num*100)/100f
-        return ans
+    private fun roundTo2Helper(num:Double):Float{
+        return Math.round(num * 100) /100f
     }
 
 }
