@@ -85,7 +85,6 @@ class FoodAdapter(private val list : ArrayList<Food>, private val listString : A
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         holder.bind(filteredFoodList[position],db,LocalDate.now().toString(),uid)
-        holder.itemView.childFoodView.text = "CHILD"
 
         holder.itemView.expandableFood.setOnExpandListener(object : ExpandableLayout.OnExpandListener {
             override fun onExpand(expanded: Boolean) {

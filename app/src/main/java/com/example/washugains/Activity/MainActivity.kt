@@ -39,10 +39,11 @@ class MainActivity : AppCompatActivity() {
 
         //grabs element from welcome_page
         bottomNav = bottomInfoBar
-        bottomNav.selectedItemId = R.id.tabs_add
+        bottomNav.menu.getItem(0).isCheckable = false
         bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.tabs_add -> {
+                    item.isCheckable = true
                     val fragment = AddTab()
                     val bundle = Bundle()
                     bundle.putString("username", username)
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
                     transactionNew.commit()
                 }
                 R.id.tabs_progress -> {
+                    item.isCheckable = true
                     val fragment = ProgressTab()
                     val bundle = Bundle()
                     bundle.putString("username", username)
@@ -61,6 +63,7 @@ class MainActivity : AppCompatActivity() {
                     transactionNew.commit()
                 }
                 R.id.tabs_person -> {
+                    item.isCheckable = true
                     val fragment = InfoTab()
                     val bundle = Bundle()
                     bundle.putString("username", username)
