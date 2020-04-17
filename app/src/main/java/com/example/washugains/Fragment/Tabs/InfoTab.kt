@@ -78,8 +78,11 @@ class InfoTab : Fragment() {
                             reference.update("calories", calories).addOnSuccessListener {
                                 println("calories updated")
                             }
-                            reference.update("height", height).addOnSuccessListener {
-                                println("height updated")
+                            reference.update("feet", feet).addOnSuccessListener {
+                                println("height (feet) updated")
+                            }
+                            reference.update("inches", inches).addOnSuccessListener {
+                                println("height (inches) updated")
                             }
                             reference.update("weight", weight).addOnSuccessListener {
                                 println("weight updated")
@@ -88,9 +91,8 @@ class InfoTab : Fragment() {
                     }
                 })
 
-            if (height != "" && weight != "" && calories != "") {
+            if (feet != "" &&  inches != "" && weight != "" && calories != "") {
 
-                myHeightInput.text.clear()
                 myWeightInput.text.clear()
                 myCaloriesInput.text.clear()
 
