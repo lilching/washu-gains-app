@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.washugains.Activity.LoginPage
 import com.example.washugains.R
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.info_page.*
 
 class InfoTab : Fragment() {
@@ -52,37 +55,37 @@ class InfoTab : Fragment() {
             var weight = myWeightInput.text.toString()
             var calories = myCaloriesInput.text.toString()
 
-//            db.collection("users").whereEqualTo("username", username).get()
-//                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-//                    if (task.isSuccessful) {
-//                        for (document in task.result!!) {
-//                            val reference = db.collection("users").document(document.id)
-//                            reference.update("calories", calories).addOnSuccessListener {
-//                                println("calories updated")
-//                            }
-//                            reference.update("height", height).addOnSuccessListener {
-//                                println("height updated")
-//                            }
-//                            reference.update("weight", weight).addOnSuccessListener {
-//                                println("weight updated")
-//                            }
-//                        }
-//                    }
-//                })
-//
-//            if (height != "" && weight != "" && calories != "") {
-//
-//                myHeightInput.text.clear()
-//                myWeightInput.text.clear()
-//                myCaloriesInput.text.clear()
-//
-//                Toast.makeText(context, "Update Success", Toast.LENGTH_SHORT).show()
-//            }
-//            else{
-//                Toast.makeText(context, "Please fill in all fields.", Toast.LENGTH_LONG).show()
-//            }
-//        }
+            db.collection("users").whereEqualTo("username", username).get()
+                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                    if (task.isSuccessful) {
+                        for (document in task.result!!) {
+                            val reference = db.collection("users").document(document.id)
+                            reference.update("calories", calories).addOnSuccessListener {
+                                println("calories updated")
+                            }
+                            reference.update("height", height).addOnSuccessListener {
+                                println("height updated")
+                            }
+                            reference.update("weight", weight).addOnSuccessListener {
+                                println("weight updated")
+                            }
+                        }
+                    }
+                })
+
+            if (height != "" && weight != "" && calories != "") {
+
+                myHeightInput.text.clear()
+                myWeightInput.text.clear()
+                myCaloriesInput.text.clear()
+
+                Toast.makeText(context, "Update Success", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(context, "Please fill in all fields.", Toast.LENGTH_LONG).show()
+            }
+        }
 
     }
-    }
+
 }
