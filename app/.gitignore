@@ -1,5 +1,4 @@
 /build
-~/app.iml
-../local.properties
-/src/main/AndroidManifest.xml
+app.iml
+local.properties
 
