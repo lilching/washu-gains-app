@@ -28,17 +28,7 @@
         <activity android:name=".Activity.MainActivity">
         </activity>
 
-<!--        <activity android:name=".Activity.BottomTabs.AddPage"-->
-<!--            android:windowSoftInputMode="adjustPan"-->
-<!--            >-->
-<!--        </activity>-->
 
-<!--        <activity android:name=".Activity.BottomTabs.InfoPage">-->
-<!--        </activity>-->
-
-<!--        <activity android:name=".Activity.BottomTabs.ProgressPage"-->
-<!--            >-->
-<!--        </activity>-->
         <activity android:name=".Activity.InputPage"
             ></activity>
 
