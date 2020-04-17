@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.washugains.Activity.LandingPage
+import com.example.washugains.Activity.LoginPage
 import com.example.washugains.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -44,7 +43,7 @@ class InfoTab : Fragment() {
         logoutButton.setOnClickListener {
             val mAuth = FirebaseAuth.getInstance()
             mAuth.signOut()
-            val intent = Intent(context, LandingPage::class.java)
+            val intent = Intent(context, LoginPage::class.java)
             startActivity(intent)
         }
 

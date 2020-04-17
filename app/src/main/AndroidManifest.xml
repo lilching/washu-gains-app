@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:name">
 
-        <activity android:name=".Activity.LandingPage">
+        <activity android:name=".Activity.LoginPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,19 +28,11 @@
         <activity android:name=".Activity.MainActivity">
         </activity>
 
-        <activity android:name=".Activity.BottomTabs.AddPage"
-            android:windowSoftInputMode="adjustPan"
-            >
+        <activity android:name=".Activity.SignUpPage">
         </activity>
 
-        <activity android:name=".Activity.BottomTabs.InfoPage">
+        <activity android:name=".Activity.InputPage">
         </activity>
-
-        <activity android:name=".Activity.BottomTabs.ProgressPage"
-            >
-        </activity>
-        <activity android:name=".Activity.InputPage"
-            ></activity>
 
     </application>
 
