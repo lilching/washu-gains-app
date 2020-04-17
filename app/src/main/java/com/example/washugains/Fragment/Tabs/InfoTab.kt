@@ -33,6 +33,10 @@ class InfoTab : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         db = FirebaseFirestore.getInstance()
+        var feet = 0
+        var inches = 0
+        var weight = 0
+        var calories = 0
 
         val username = arguments?.getString("username")
         infoUserText.text = username
@@ -41,7 +45,17 @@ class InfoTab : Fragment() {
         logoutButton = logout
         updateButton = myInfoInput
 
-
+        db.collection("users").whereEqualTo("username", username).get()
+            .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+                        feet = document.get("feet").toString().toInt()
+                        inches = document.get("inches").toString().toInt()
+                        weight = document.get("weight").toString().toInt()
+                        calories = document.get("calories").toString().toInt()
+                    }
+                }
+            })
 
         logoutButton.setOnClickListener {
             val mAuth = FirebaseAuth.getInstance()
@@ -51,7 +65,8 @@ class InfoTab : Fragment() {
         }
 
         updateButton.setOnClickListener{
-            var height = myHeightInput.text.toString()
+            var feet = myFeetInput.text.toString()
+            var inches = myInchInput.text.toString()
             var weight = myWeightInput.text.toString()
             var calories = myCaloriesInput.text.toString()
 
