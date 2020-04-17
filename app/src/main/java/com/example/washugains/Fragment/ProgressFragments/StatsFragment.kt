@@ -30,7 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.time.LocalDate
 
 
-class StatsFragment(val dateMap: HashMap<String,DailyInfo>) : Fragment(){
+class StatsFragment() : Fragment(){
 
     private val db= FirebaseFirestore.getInstance()
     private val uid= FirebaseAuth.getInstance().uid
@@ -137,16 +137,7 @@ class StatsFragment(val dateMap: HashMap<String,DailyInfo>) : Fragment(){
 
 
     }
-//    class OnSliceSelected:OnChartValueSelectedListener(){
-//        override fun onNothingSelected(){
-//
-//        }
-//
-//        override fun onValueSelected(e: Entry?, h: Highlight?) {
-//
-//        }
-//
-//    }
+
 
     fun roundTo2Helper( num:Double):Float{
         val ans=Math.round(num*100)/100f
