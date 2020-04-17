@@ -82,6 +82,4 @@ class ExerciseFragment : Fragment() {
         val calories = ((MET*weight/2.2)*time/60) as Int
         return calories
     }
-
-    //hello
 }
