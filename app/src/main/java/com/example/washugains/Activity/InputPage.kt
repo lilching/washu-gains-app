@@ -1,12 +1,9 @@
 package com.example.washugains.Activity
 
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.washugains.Activity.BottomTabs.AddPage
 import com.example.washugains.DataClass.DailyInfo
 import com.example.washugains.R
 import com.google.android.gms.tasks.OnCompleteListener
@@ -56,7 +53,7 @@ class InputPage: AppCompatActivity() {
                 })
 
             if (height != "" && weight != "" && calories != "") {
-                val intent = Intent(this, WelcomePage::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("username", username)
                 intent.putExtra("calories", calories)
                 intent.putExtra("dailyInfoList",dailyInfoList)

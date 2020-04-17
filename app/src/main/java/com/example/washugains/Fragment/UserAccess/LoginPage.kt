@@ -12,13 +12,12 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import com.example.washugains.Activity.WelcomePage
+import com.example.washugains.Activity.MainActivity
 import com.example.washugains.DataClass.DailyInfo
 import com.example.washugains.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.login_page.*
-import kotlinx.android.synthetic.main.welcome_page.*
 import java.time.LocalDate
 
 class LoginPage : Fragment() {
@@ -45,7 +44,7 @@ class LoginPage : Fragment() {
         //TODO remove backdoor when finished
         backdoorButton = backDoor
         backdoorButton.setOnClickListener {
-            val intent = Intent(context, WelcomePage::class.java)
+            val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         }
 
@@ -98,7 +97,7 @@ class LoginPage : Fragment() {
 
 
 //                                        val calories = 0
-                                        val intent = Intent(context, WelcomePage::class.java)
+                                        val intent = Intent(context, MainActivity::class.java)
                                         intent.putExtra("username",username)
                                         intent.putExtra("calories", calories)
                                       //  val dailyInfoList=ArrayList<DailyInfo>(dateMap.values as MutableCollection<out DailyInfo>)
