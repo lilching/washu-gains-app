@@ -6,4 +6,5 @@ data class Food(
     val carb: Double = 0.0,
     val fat: Double = 0.0,
     val sugars: Double = 0.0,
-    val protein:Double =0.0 )
+    val protein:Double =0.0,
+    var id:String="")

@@ -1,6 +1,5 @@
 package com.example.washugains.Adapter
 
-
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,25 +15,24 @@ import com.example.washugains.ExpandableLayout
 import com.example.washugains.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.expandable_exercise_row.view.*
 import kotlinx.android.synthetic.main.expandable_food_row.view.*
 import java.time.LocalDate
 import java.util.*
 import kotlin.collections.ArrayList
 
-class FoodViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
+class FoodAddedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.expandable_food_row, parent, false)) {
 
-    private val name: TextView = itemView.findViewById(R.id.foodNameText)
-    private val calories: TextView=itemView.findViewById(R.id.caloriesText)
-    private val carbs: TextView=itemView.findViewById(R.id.carbsText)
-    private val protein: TextView=itemView.findViewById(R.id.proteinText)
-    private val sugar: TextView=itemView.findViewById(R.id.sugarText)
-    private val fat: TextView=itemView.findViewById(R.id.fatText)
-    private val foodButton:Button=itemView.findViewById(R.id.addFoodButton)
+    private val name: TextView = itemView.findViewById(R.id.foodAddedNameText)
+    private val calories: TextView =itemView.findViewById(R.id.caloriesAddedText)
+    private val carbs: TextView =itemView.findViewById(R.id.carbsAddedText)
+    private val protein: TextView =itemView.findViewById(R.id.proteinAddedText)
+    private val sugar: TextView =itemView.findViewById(R.id.sugarAddedText)
+    private val fat: TextView =itemView.findViewById(R.id.fatAddedText)
+    private val foodButton: Button =itemView.findViewById(R.id.deleteFoodButton)
 
 
-    fun bind(food : Food,db:FirebaseFirestore,currentDate:String,uid:String?){
+    fun bind(food : Food, db: FirebaseFirestore, currentDate:String, uid:String?){
         name.text=food.name
         calories.text="Calories: "+food.calories
         carbs.text="Carbs: "+food.carb+"g"
@@ -45,15 +43,14 @@ class FoodViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
             foodButton.setOnClickListener {
                 db.collection("users").document(uid).collection("dates")
                     .document(currentDate).collection("foodAdded").add(food)
-                    .addOnSuccessListener { documentReference -> food.id=documentReference.id }
                 //add to today's data and update to firebase
                 db.collection("users").document(uid).collection("dates")
                     .document(currentDate).get().addOnSuccessListener { documentSnapshot ->
                         var dailyData= documentSnapshot.toObject(DailyInfo::class.java)
                         if (dailyData!=null)
-                        dailyData=
-                            DailyInfo(dailyData.date,dailyData.calories+food.calories,dailyData.carb+food.carb,
-                        dailyData.fat+food.fat,dailyData.sugars+food.sugars,dailyData.protein+food.protein)
+                            dailyData=
+                                DailyInfo(dailyData.date,dailyData.calories+food.calories,dailyData.carb+food.carb,
+                                    dailyData.fat+food.fat,dailyData.sugars+food.sugars,dailyData.protein+food.protein)
                         db.collection("users").document(uid).collection("dates")
                             .document(currentDate).set(dailyData!!)
                     }
@@ -65,26 +62,26 @@ class FoodViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     }
 }
 
-class FoodAdapter(private val list : ArrayList<Food>, private val listString : ArrayList<String>)
-    : RecyclerView.Adapter<FoodViewHolder>(), Filterable {
+class FoodAddedAdapter(private val list : ArrayList<Food>, private val listString : ArrayList<String>)
+    : RecyclerView.Adapter<FoodAddedViewHolder>(), Filterable {
 
     private var filteredFoodList = ArrayList<Food>()
     private val expandedPositionSet : HashSet<Int> = HashSet()
-    private val db=FirebaseFirestore.getInstance()
-    private val uid=FirebaseAuth.getInstance().uid
+    private val db= FirebaseFirestore.getInstance()
+    private val uid= FirebaseAuth.getInstance().uid
 
     init {
         filteredFoodList = list
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodAddedViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return FoodViewHolder(inflater, parent)
+        return FoodAddedViewHolder(inflater, parent)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
-        holder.bind(filteredFoodList[position],db,LocalDate.now().toString(),uid)
+    override fun onBindViewHolder(holder: FoodAddedViewHolder, position: Int) {
+        holder.bind(filteredFoodList[position],db, LocalDate.now().toString(),uid)
         holder.itemView.childFoodView.text = "CHILD"
 
         holder.itemView.expandableFood.setOnExpandListener(object : ExpandableLayout.OnExpandListener {
