@@ -1,5 +1,6 @@
 package com.example.washugains.Fragment.Tabs
 
+import EditInfoFragment
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.washugains.Activity.LoginPage
+//import com.example.washugains.Fragment.EditInfoFragment
 import com.example.washugains.R
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -42,8 +44,6 @@ class InfoTab : Fragment() {
         infoUserText.text = username
 
         //grab element from info_page
-        logoutButton = logout
-        updateButton = myInfoInput
 
         db.collection("users").whereEqualTo("username", username).get()
             .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
@@ -53,57 +53,22 @@ class InfoTab : Fragment() {
                         inches = document.get("inches").toString().toInt()
                         weight = document.get("weight").toString().toInt()
                         calories = document.get("calories").toString().toInt()
+
                     }
                 }
             })
 
-        logoutButton.setOnClickListener {
-            val mAuth = FirebaseAuth.getInstance()
-            mAuth.signOut()
-            val intent = Intent(context, LoginPage::class.java)
-            startActivity(intent)
-        }
-
-        updateButton.setOnClickListener{
-            var feet = myFeetInput.text.toString()
-            var inches = myInchInput.text.toString()
-            var weight = myWeightInput.text.toString()
-            var calories = myCaloriesInput.text.toString()
-
-            db.collection("users").whereEqualTo("username", username).get()
-                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-                    if (task.isSuccessful) {
-                        for (document in task.result!!) {
-                            val reference = db.collection("users").document(document.id)
-                            reference.update("calories", calories).addOnSuccessListener {
-                                println("calories updated")
-                            }
-                            reference.update("feet", feet).addOnSuccessListener {
-                                println("height (feet) updated")
-                            }
-                            reference.update("inches", inches).addOnSuccessListener {
-                                println("height (inches) updated")
-                            }
-                            reference.update("weight", weight).addOnSuccessListener {
-                                println("weight updated")
-                            }
-                        }
-                    }
-                })
-
-            if (feet != "" &&  inches != "" && weight != "" && calories != "") {
-
-                myWeightInput.text.clear()
-                myCaloriesInput.text.clear()
-                myFeetInput.text.clear()
-                myInchInput.text.clear()
-
-                Toast.makeText(context, "Update Success", Toast.LENGTH_SHORT).show()
-            }
-            else{
-                Toast.makeText(context, "Please fill in all fields.", Toast.LENGTH_LONG).show()
-            }
-        }
+        val fragment = EditInfoFragment()
+        var bundle = Bundle()
+        bundle.putString("username", username)
+        bundle.putInt("feet",feet)
+        bundle.putInt("inches",inches)
+        bundle.putInt("weight", weight)
+        bundle.putInt("calories", calories)
+        fragment.arguments = bundle
+        val transaction = activity!!.supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        transaction.commit()
 
     }
 
