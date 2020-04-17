@@ -95,6 +95,8 @@ class InfoTab : Fragment() {
 
                 myWeightInput.text.clear()
                 myCaloriesInput.text.clear()
+                myFeetInput.text.clear()
+                myInchInput.text.clear()
 
                 Toast.makeText(context, "Update Success", Toast.LENGTH_SHORT).show()
             }
