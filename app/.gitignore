@@ -1,3 +1,5 @@
 /build
-app.iml
+~/app.iml
 ../local.properties
+/src/main/AndroidManifest.xml
+
