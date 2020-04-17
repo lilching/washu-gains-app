@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.washugains.Activity.LoginPage
+import com.example.washugains.Fragment.InfoFragments.DisplayInfoFragment
 //import com.example.washugains.Fragment.EditInfoFragment
 import com.example.washugains.R
 import com.google.android.gms.tasks.OnCompleteListener
@@ -54,21 +55,21 @@ class InfoTab : Fragment() {
                         weight = document.get("weight").toString().toInt()
                         calories = document.get("calories").toString().toInt()
 
+                        val fragment = DisplayInfoFragment()
+                        var bundle = Bundle()
+                        bundle.putString("username", username)
+                        bundle.putInt("feet",feet)
+                        bundle.putInt("inches",inches)
+                        bundle.putInt("weight", weight)
+                        bundle.putInt("calories", calories)
+                        fragment.arguments = bundle
+                        val transaction = activity!!.supportFragmentManager.beginTransaction()
+                        transaction.replace(R.id.container, fragment)
+                        transaction.commit()
+
                     }
                 }
             })
-
-        val fragment = EditInfoFragment()
-        var bundle = Bundle()
-        bundle.putString("username", username)
-        bundle.putInt("feet",feet)
-        bundle.putInt("inches",inches)
-        bundle.putInt("weight", weight)
-        bundle.putInt("calories", calories)
-        fragment.arguments = bundle
-        val transaction = activity!!.supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment)
-        transaction.commit()
 
     }
 
