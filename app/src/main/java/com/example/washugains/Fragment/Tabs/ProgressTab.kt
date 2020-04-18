@@ -9,6 +9,8 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.washugains.DataClass.DailyInfo
 import com.example.washugains.Fragment.ProgressFragments.AddedExerciseFragment
 import com.example.washugains.Fragment.ProgressFragments.AddedFoodFragment
@@ -20,9 +22,8 @@ import kotlinx.android.synthetic.main.progress_page.*
 import java.time.LocalDate
 
 class ProgressTab : Fragment() {
-
- //   private lateinit var db : FirebaseFirestore
- //   private lateinit var dateMap:HashMap<String,DailyInfo>
+    //private var dailyInfo:LiveData<DailyInfo> = MutableLiveData()
+   // private var dailyInfo
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +43,7 @@ class ProgressTab : Fragment() {
             )
 
 
+
         progressViewPager.adapter = fragmentAdapter
 
         progressTabsMain.setupWithViewPager(progressViewPager)
@@ -51,60 +53,30 @@ class ProgressTab : Fragment() {
         super.onStart()
         progressViewPager.setCurrentItem(0)
 
- //       db= FirebaseFirestore.getInstance()
-
-        //getting the data of the past month
-//        dateMap= HashMap()
-//        for (i in 0..30 as Long) {
-//            val date =
-//                LocalDate.now().minusDays(i).toString()
-//            dateMap.put(date, DailyInfo(date))
-//        }
-//        val mAuth = FirebaseAuth.getInstance()
-//        val user=mAuth.currentUser
-//        if(user!=null) {
-//            db.collection("users").document(user.uid).collection("dates").get()
-//                .addOnSuccessListener { documents ->
-//                    for (document in documents) {
-//                        if (dateMap.get(document.id) != null) {
-//                            dateMap.put(document.id, document.toObject(DailyInfo::class.java))
-//                        }
-//                    }
-//                }
-//            db.collection("users").document(user.uid).collection("dates").document(LocalDate.now().toString()).addSnapshotListener{
-//                    document, e ->
-//                if (document != null && document.exists()) {
-//                    document.toObject(DailyInfo::class.java)?.let { dateMap.put(document.id, it) }
-//                }
-//            }
-//        }
-
     }
 
-    inner class ProgressPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-        override fun getCount(): Int {
-            return 3
+}
+ class ProgressPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+
+    override fun getCount(): Int {
+        return 3
+    }
+
+    override fun getItem(position: Int): Fragment {
+        return when (position) {
+            0 -> StatsFragment()
+            1 -> AddedFoodFragment()
+            else -> AddedExerciseFragment()
         }
+    }
 
-        override fun getItem(position: Int): Fragment {
-            return when (position) {
-                0 -> {
-                    StatsFragment()
-                }
-                1 -> AddedFoodFragment()
-                else -> AddedExerciseFragment()
-            }
+    override fun getPageTitle(position: Int): CharSequence? {
+        return when (position) {
+            0 -> "Daily Stats"
+            1 -> "Food"
+            else -> "Exercise"
         }
-
-        override fun getPageTitle(position: Int): CharSequence? {
-            return when (position) {
-                0 -> "Daily Stats"
-                1 -> "Food"
-                else -> "Exercise"
-            }
-        }
-
     }
 
 }
