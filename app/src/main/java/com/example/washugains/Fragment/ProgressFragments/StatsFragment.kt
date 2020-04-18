@@ -31,11 +31,17 @@ class StatsFragment() : Fragment(){
     private val db= FirebaseFirestore.getInstance()
     private val uid= FirebaseAuth.getInstance().uid
     private var dailyData:DailyInfo?=null
+    lateinit var tf:Typeface
+    lateinit var tf_light:Typeface
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+         tf =
+            Typeface.createFromAsset(activity?.assets, "OpenSans-Regular.ttf")
+        tf_light =
+            Typeface.createFromAsset(activity?.assets, "OpenSans-Light.ttf")
         return inflater.inflate(R.layout.chart_fragment, container, false)
     }
 
@@ -53,12 +59,6 @@ class StatsFragment() : Fragment(){
                         if (pie != null && dailyData != null) {
                             pie.setUsePercentValues(false)
                             pie.description.isEnabled = false
-                            val tf =
-                                Typeface.createFromAsset(requireContext().assets, "OpenSans-Regular.ttf")
-                            val tf_light =
-                                Typeface.createFromAsset(requireContext().assets, "OpenSans-Light.ttf")
-
-
 
                             pie.setExtraOffsets(5f, 5f, 5f, 5f)
                             pie.dragDecelerationFrictionCoef = 0.95f
@@ -100,7 +100,7 @@ class StatsFragment() : Fragment(){
                             val legend = pie.legend
                             legend.isEnabled = true
                             legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
-                            legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+                            legend.horizontalAlignment = Legend.LegendHorizontalAlignment.LEFT
                             legend.orientation = Legend.LegendOrientation.VERTICAL
                             legend.setDrawInside(true)
                             legend.formSize = 10f
