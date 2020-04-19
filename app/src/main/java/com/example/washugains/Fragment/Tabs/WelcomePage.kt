@@ -38,7 +38,7 @@ class WelcomePage : Fragment() {
         //Vince Lombardi
         quoteList.add("It's not whether you get knocked down, it's whether you get up")
         //Johann Wolfgang Von Goethe
-        quoteList.add("Knowing is not enough, we must apply. Wishing is not enough; we must do")
+        quoteList.add("Knowing is not enough, we must apply. Wishing is not enough, we must do")
 
         inspireQuote = inspirationalQuote
         inspireQuote.text = quoteList.random()

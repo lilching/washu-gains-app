@@ -40,7 +40,7 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="20dp"
             app:iconifiedByDefault="false"
-            app:queryHint="Enter Food" />
+            app:queryHint="Enter Exercise" />
 
     </LinearLayout>
 
