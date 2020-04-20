@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/gradient2"
+            android:src="@drawable/namn"
             />
 
         <LinearLayout
@@ -31,9 +31,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"
                 android:textStyle="bold"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:textColor="#a73737"
                 android:text="Sign-Up"
                 android:gravity="center"
                 android:textSize="30dp"
@@ -75,12 +77,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@color/colorPrimary"
+                android:background="#a73737"
                 android:textSize="20dp"
                 android:textColor="#FFFFFF"
+                android:fontFamily="@font/roboto_slab_bold"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:text="Sign-Up"
                 />
 
@@ -107,11 +110,23 @@
                     android:text="Login now"
                     android:textSize="15dp"
                     android:paddingLeft="5dp"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:textColor="#a73737"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     />
 
             </LinearLayout>
         </LinearLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="-130dp"
+            android:layout_gravity="center"
+            android:src="@drawable/wugainslogo"
+            android:translationY="-100dp"
+            app:civ_border_color="#F5F0E3"
+            app:civ_border_width="5dp" />
 
     </FrameLayout>
 
