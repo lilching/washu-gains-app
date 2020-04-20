@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.washugains.ExpandableLayout
 import com.example.washugains.R
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.expandable_exercise_row.view.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -23,16 +25,18 @@ class ExerciseHolder(inflater: LayoutInflater, parent: ViewGroup) :
     }
 }
 
-class ExerciseAdapter(private val list : ArrayList<String>)
+class ExerciseAdapter(private val list : ArrayList<String>, private val METlist: ArrayList<Int>)
     : RecyclerView.Adapter<ExerciseHolder>(), Filterable {
 
     private var filteredExerciseList = ArrayList<String>()
+    private var filteredMETList = ArrayList<Int>()
     private val expandedPositionSet : HashSet<Int> = HashSet()
 
 
 
     init {
         filteredExerciseList = list
+        filteredMETList = METlist
 
     }
 
@@ -44,7 +48,7 @@ class ExerciseAdapter(private val list : ArrayList<String>)
     override fun onBindViewHolder(holder: ExerciseHolder, position: Int) {
 //        holder.bind(filteredExerciseList[position])
         holder.itemView.parentView.text = filteredExerciseList[position]
-        holder.itemView.childView.text = "CHILD"
+        holder.itemView.childView.text = filteredMETList[position].toString()
 
         holder.itemView.expandable.setOnExpandListener(object : ExpandableLayout.OnExpandListener {
             override fun onExpand(expanded: Boolean) {

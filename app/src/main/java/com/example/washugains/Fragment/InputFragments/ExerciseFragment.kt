@@ -23,6 +23,8 @@ class ExerciseFragment : Fragment() {
     val exerciseList : ArrayList<Exercise> = ArrayList()
     var exerciseString : ArrayList<String> = ArrayList()
 
+    val exerciseMETlist: ArrayList<Int> = ArrayList()
+
     private lateinit var exerciseSearch : androidx.appcompat.widget.SearchView
 
     override fun onCreateView(
@@ -37,7 +39,7 @@ class ExerciseFragment : Fragment() {
         super.onStart()
 
         val recyclerView = view?.findViewById<RecyclerView>(R.id.exerciseRecyclerView)
-        val adapter = ExerciseAdapter(exerciseString)
+        val adapter = ExerciseAdapter(exerciseString, exerciseMETlist)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(context)
         val multiLineDivider = MultiLineDivider(context!!)
@@ -53,6 +55,7 @@ class ExerciseFragment : Fragment() {
                     exerciseList.add(exercise!!)
                     if (exercise!=null){
                         exerciseString.add(exercise.activity)
+                        exerciseMETlist.add(exercise.met)
                     }
                 }
                 adapter.notifyDataSetChanged()
