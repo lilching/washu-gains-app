@@ -56,6 +56,22 @@ class EditInfoFragment : Fragment() {
             startActivity(intent)
         }
 
+        cancel.setOnClickListener{
+            val fragment = DisplayInfoFragment()
+            var bundle = Bundle()
+            bundle.putString("username", username)
+            bundle.putInt("feet",feet.toInt())
+            bundle.putInt("inches",inches.toInt())
+            bundle.putInt("weight", weight.toInt())
+            bundle.putInt("calories", calories.toInt())
+            fragment.arguments = bundle
+            val transaction = activity!!.supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.container, fragment)
+            transaction.commit()
+            Toast.makeText(context, "update cancelled", Toast.LENGTH_SHORT).show()
+
+        }
+
         updateButton.setOnClickListener{
             var feet = myFeetInput.text.toString()
             var inches = myInchInput.text.toString()
