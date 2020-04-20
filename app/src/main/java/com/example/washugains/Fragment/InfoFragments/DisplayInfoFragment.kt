@@ -66,8 +66,8 @@ class DisplayInfoFragment : Fragment() {
             bundle.putString("username", username)
             bundle.putInt("feet",feet)
             bundle.putInt("inches",inches)
-            bundle.putInt("weight", weight)
-            bundle.putInt("calorieGoal", calorieGoal)
+            bundle.putInt("Weight", weight)
+            bundle.putInt("CalorieGoal", calorieGoal)
             fragment.arguments = bundle
             val transaction = activity!!.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container, fragment)
