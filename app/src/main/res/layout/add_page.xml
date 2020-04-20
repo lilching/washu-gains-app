@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:sc_border_width="2dp"
         app:sc_corner_radius="10dp"
+        app:sc_tint_color="#a73737"
         >
 
         <RadioButton
