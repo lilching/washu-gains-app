@@ -49,21 +49,22 @@ class ExerciseFragment : Fragment() {
         var username = arguments!!.getString("username")!!
 
         val recyclerView = view?.findViewById<RecyclerView>(R.id.exerciseRecyclerView)
-        val adapter = ExerciseAdapter(exerciseString, exerciseMETlist, weight, calories, username)
+        val adapter = ExerciseAdapter(exerciseString, exerciseMETlist, username)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(context)
         val multiLineDivider = MultiLineDivider(context!!)
         recyclerView?.addItemDecoration(multiLineDivider)
 
-        db.collection("users").whereEqualTo("username", username).get()
-            .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-                if (task.isSuccessful) {
-                    for (document in task.result!!) {
-                        weight = document.get("weight").toString().toInt()
-                        calories = document.get("calories").toString().toInt()
-                    }
-                }
-            })
+//        db.collection("users").whereEqualTo("username", username).get()
+//            .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+//                if (task.isSuccessful) {
+//                    for (document in task.result!!) {
+//                        weight = document.get("weight").toString().toInt()
+//                        calories = document.get("calories").toString().toInt()
+//                        println(calories.toString() + "CALORIES HERE")
+//                    }
+//                }
+//            })
 
         val ref = FirebaseDatabase.getInstance().getReference("sports")
         ref.addValueEventListener(object : ValueEventListener {

@@ -27,7 +27,7 @@ class ExerciseHolder(inflater: LayoutInflater, parent: ViewGroup) :
     }
 }
 
-class ExerciseAdapter(private val list : ArrayList<String>, private val METlist: ArrayList<Int>, private val weight: Int, private val calories: Int, private val username: String)
+class ExerciseAdapter(private val list : ArrayList<String>, private val METlist: ArrayList<Int>, private val username: String)
     : RecyclerView.Adapter<ExerciseHolder>(), Filterable {
 
     private var filteredExerciseList = ArrayList<String>()
@@ -47,6 +47,39 @@ class ExerciseAdapter(private val list : ArrayList<String>, private val METlist:
 
     override fun onBindViewHolder(holder: ExerciseHolder, position: Int) {
         db = FirebaseFirestore.getInstance()
+        db.collection("users").whereEqualTo("username", username).get()
+            .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+                        var weight = document.get("weight").toString().toInt()
+                        var calories = document.get("calories").toString().toInt()
+                        println(calories.toString() + "CALORIES HERE")
+                        holder.itemView.enter.setOnClickListener{
+
+                            val calsLost = caloriesBurned(filteredMETList[position], holder.itemView.minutesEntered.text.toString().toInt(), weight)
+                            val updatedCalories = calories-calsLost
+                            println("MET value " + filteredMETList[position])
+                            println("calsLost " + calsLost)
+                            println("current cals " + calories)
+                            println("updated " + updatedCalories)
+
+                            db.collection("users").whereEqualTo("username", username).get()
+                                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                                    if (task.isSuccessful) {
+                                        for (document in task.result!!) {
+                                            val reference = db.collection("users").document(document.id)
+                                            reference.update("calories", updatedCalories).addOnSuccessListener {
+                                                println("calories updated")
+                                            }
+                                        }
+                                    }
+                                })
+                        }
+                    }
+                }
+            })
+
+
 
         holder.bind(filteredExerciseList[position])
         holder.itemView.parentView.text = filteredExerciseList[position]
@@ -64,24 +97,6 @@ class ExerciseAdapter(private val list : ArrayList<String>, private val METlist:
         })
 
 
-        holder.itemView.enter.setOnClickListener{
-
-            val calsLost = caloriesBurned(filteredMETList[position], holder.itemView.minutesEntered.text.toString().toInt(), weight)
-//            holder.itemView.caloriesLost.text = calsLost.toString()
-            val updatedCalories = calories-calsLost
-
-            db.collection("users").whereEqualTo("username", username).get()
-                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-                    if (task.isSuccessful) {
-                        for (document in task.result!!) {
-                            val reference = db.collection("users").document(document.id)
-                            reference.update("calories", updatedCalories).addOnSuccessListener {
-                                println("calories updated")
-                            }
-                        }
-                    }
-                })
-        }
     }
 
     fun caloriesBurned(MET: Int, time: Int, weight: Int): Int{
