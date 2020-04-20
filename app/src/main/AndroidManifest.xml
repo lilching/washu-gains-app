@@ -6,6 +6,9 @@
     <!--permission to use the internet -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--permission to use the camera -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:name="androidx.multidex.MultiDexApplication"

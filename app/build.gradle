@@ -69,9 +69,15 @@ dependencies {
     //Circular ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-
+    //lifecycle for LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-rc02"
     kapt "androidx.lifecycle:lifecycle-compiler:2.2.0-rc02"
+
+    //for ML
+    implementation 'com.google.firebase:firebase-ml-vision:24.0.2'
+    implementation 'com.google.firebase:firebase-ml-vision-object-detection-model:19.0.4'
+
+
 
 
 }

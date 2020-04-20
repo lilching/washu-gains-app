@@ -22,13 +22,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exerciseText">
 
-        <ImageView
-            android:id="@+id/exercise_camera"
-            android:layout_width="6dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1"
-            app:srcCompat="@mipmap/ic_camera" />
-
         <androidx.appcompat.widget.SearchView
             android:id="@+id/exercise_search"
             android:layout_width="0dp"
