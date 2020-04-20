@@ -26,6 +26,7 @@ class AddTab : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val username = arguments!!.getString("username")
 
         val fragment =
             FoodFragment()
@@ -46,6 +47,9 @@ class AddTab : Fragment() {
         exerciseButton.setOnClickListener {
             val fragment =
                 ExerciseFragment()
+            var bundle = Bundle()
+            bundle.putString("username", username)
+            fragment.arguments = bundle
             val transaction = activity!!.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container, fragment)
             transaction.commit()

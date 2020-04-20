@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.washugains.ExpandableLayout
 import com.example.washugains.R
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.expandable_exercise_row.view.*
 import java.util.*
@@ -25,19 +27,17 @@ class ExerciseHolder(inflater: LayoutInflater, parent: ViewGroup) :
     }
 }
 
-class ExerciseAdapter(private val list : ArrayList<String>, private val METlist: ArrayList<Int>)
+class ExerciseAdapter(private val list : ArrayList<String>, private val METlist: ArrayList<Int>, private val weight: Int, private val calories: Int, private val username: String)
     : RecyclerView.Adapter<ExerciseHolder>(), Filterable {
 
     private var filteredExerciseList = ArrayList<String>()
     private var filteredMETList = ArrayList<Int>()
     private val expandedPositionSet : HashSet<Int> = HashSet()
-
-
+    private lateinit var db : FirebaseFirestore
 
     init {
         filteredExerciseList = list
         filteredMETList = METlist
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseHolder {
@@ -46,9 +46,11 @@ class ExerciseAdapter(private val list : ArrayList<String>, private val METlist:
     }
 
     override fun onBindViewHolder(holder: ExerciseHolder, position: Int) {
-//        holder.bind(filteredExerciseList[position])
+        db = FirebaseFirestore.getInstance()
+
+        holder.bind(filteredExerciseList[position])
         holder.itemView.parentView.text = filteredExerciseList[position]
-        holder.itemView.childView.text = filteredMETList[position].toString()
+//        holder.itemView.childView.text = filteredMETList[position].toString()
 
         holder.itemView.expandable.setOnExpandListener(object : ExpandableLayout.OnExpandListener {
             override fun onExpand(expanded: Boolean) {
@@ -60,6 +62,31 @@ class ExerciseAdapter(private val list : ArrayList<String>, private val METlist:
                 }
             }
         })
+
+
+        holder.itemView.enter.setOnClickListener{
+
+            val calsLost = caloriesBurned(filteredMETList[position], holder.itemView.minutesEntered.text.toString().toInt(), weight)
+//            holder.itemView.caloriesLost.text = calsLost.toString()
+            val updatedCalories = calories-calsLost
+
+            db.collection("users").whereEqualTo("username", username).get()
+                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                    if (task.isSuccessful) {
+                        for (document in task.result!!) {
+                            val reference = db.collection("users").document(document.id)
+                            reference.update("calories", updatedCalories).addOnSuccessListener {
+                                println("calories updated")
+                            }
+                        }
+                    }
+                })
+        }
+    }
+
+    fun caloriesBurned(MET: Int, time: Int, weight: Int): Int{
+        val cals = ((MET*weight/2.2)*time/60).toInt()
+        return cals
     }
 
     override fun getItemCount(): Int {

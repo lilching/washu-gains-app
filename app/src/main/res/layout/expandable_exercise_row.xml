@@ -28,16 +28,49 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
         android:padding="10dp"
+        android:orientation="horizontal"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/parentLay"
         >
 
         <TextView
             android:id="@+id/childView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
-            android:padding="5dp"
-            android:text="minutes"
+            android:layout_marginRight="5dp"
+            android:textSize="15dp"
+            android:text="COMPLETED:"
+            />
+<!--        <TextView-->
+<!--            android:id="@+id/caloriesLost"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textColor="@android:color/white"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:textSize="15dp"-->
+<!--            android:visibility="invisible"-->
+<!--            android:text="calsLost"-->
+<!--            />-->
+
+        <EditText
+            android:id="@+id/minutesEntered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25dp"
+            android:textColor="@android:color/white"
+            android:inputType="number"
+            android:hint="Enter minutes"
+            android:textColorHint="@android:color/holo_blue_light"
+            />
+
+        <Button
+            style="@style/RadioButton"
+            android:id="@+id/enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter"
+            android:textColorHint="@android:color/holo_blue_light"
             />
 
     </LinearLayout>

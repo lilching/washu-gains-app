@@ -14,16 +14,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.washugains.Adapter.ExerciseAdapter
 import com.example.washugains.DataClass.Exercise
 import com.example.washugains.R
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.*
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import com.sakebook.android.library.multilinedevider.MultiLineDivider
 import kotlinx.android.synthetic.main.exercise_fragment.*
 
 class ExerciseFragment : Fragment() {
 
+    private lateinit var db : FirebaseFirestore
+
     val exerciseList : ArrayList<Exercise> = ArrayList()
     var exerciseString : ArrayList<String> = ArrayList()
-
     val exerciseMETlist: ArrayList<Int> = ArrayList()
+
 
     private lateinit var exerciseSearch : androidx.appcompat.widget.SearchView
 
@@ -38,12 +43,27 @@ class ExerciseFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        var weight = 0
+        var calories = 0
+        db = FirebaseFirestore.getInstance()
+        var username = arguments!!.getString("username")!!
+
         val recyclerView = view?.findViewById<RecyclerView>(R.id.exerciseRecyclerView)
-        val adapter = ExerciseAdapter(exerciseString, exerciseMETlist)
+        val adapter = ExerciseAdapter(exerciseString, exerciseMETlist, weight, calories, username)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(context)
         val multiLineDivider = MultiLineDivider(context!!)
         recyclerView?.addItemDecoration(multiLineDivider)
+
+        db.collection("users").whereEqualTo("username", username).get()
+            .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+                        weight = document.get("weight").toString().toInt()
+                        calories = document.get("calories").toString().toInt()
+                    }
+                }
+            })
 
         val ref = FirebaseDatabase.getInstance().getReference("sports")
         ref.addValueEventListener(object : ValueEventListener {
@@ -66,6 +86,8 @@ class ExerciseFragment : Fragment() {
             }
         })
 
+
+
         //grabs searchView from exercise_fragment
         exerciseSearch = exercise_search
         exerciseSearch.setOnQueryTextListener(object: androidx.appcompat.widget.SearchView.OnQueryTextListener {
@@ -81,8 +103,4 @@ class ExerciseFragment : Fragment() {
         })
     }
 
-    fun caloriesBurned(MET: Int, time: Int, weight: Int): Int{
-        val calories = ((MET*weight/2.2)*time/60) as Int
-        return calories
-    }
 }

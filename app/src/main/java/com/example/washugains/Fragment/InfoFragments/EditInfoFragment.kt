@@ -43,7 +43,7 @@ class EditInfoFragment : Fragment() {
         var feet = arguments!!.getInt("feet")
         var inches = arguments!!.getInt("inches")
         var weight = arguments!!.getInt("weight")
-        var calories = arguments!!.getInt("calories")
+        var calorieGoal = arguments!!.getInt("calorieGoal")
         var username = arguments!!.getString("username")
 
         logoutButton = logout
@@ -63,7 +63,7 @@ class EditInfoFragment : Fragment() {
             bundle.putInt("feet",feet.toInt())
             bundle.putInt("inches",inches.toInt())
             bundle.putInt("weight", weight.toInt())
-            bundle.putInt("calories", calories.toInt())
+            bundle.putInt("calorieGoal", calorieGoal.toInt())
             fragment.arguments = bundle
             val transaction = activity!!.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container, fragment)
@@ -76,17 +76,17 @@ class EditInfoFragment : Fragment() {
             var feet = myFeetInput.text.toString()
             var inches = myInchInput.text.toString()
             var weight = myWeightInput.text.toString()
-            var calories = myCaloriesInput.text.toString()
+            var calorieGoal = myCaloriesInput.text.toString()
 
-            if (feet != "" &&  inches != "" && weight != "" && calories != "") {
+            if (feet != "" &&  inches != "" && weight != "" && calorieGoal != "") {
 
                 db.collection("users").whereEqualTo("username", username).get()
                     .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                         if (task.isSuccessful) {
                             for (document in task.result!!) {
                                 val reference = db.collection("users").document(document.id)
-                                reference.update("calories", calories).addOnSuccessListener {
-                                    println("calories updated")
+                                reference.update("calorieGoal", calorieGoal).addOnSuccessListener {
+                                    println("calorieGoal updated")
                                 }
                                 reference.update("feet", feet).addOnSuccessListener {
                                     println("height (feet) updated")
@@ -104,7 +104,7 @@ class EditInfoFragment : Fragment() {
                                 bundle.putInt("feet",feet.toInt())
                                 bundle.putInt("inches",inches.toInt())
                                 bundle.putInt("weight", weight.toInt())
-                                bundle.putInt("calories", calories.toInt())
+                                bundle.putInt("calorieGoal", calorieGoal.toInt())
                                 fragment.arguments = bundle
                                 val transaction = activity!!.supportFragmentManager.beginTransaction()
                                 transaction.replace(R.id.container, fragment)

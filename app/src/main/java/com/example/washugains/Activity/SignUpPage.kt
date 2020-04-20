@@ -44,6 +44,7 @@ class SignUpPage : AppCompatActivity() {
             val mAuth = FirebaseAuth.getInstance()
             val username = userSignUpInput.text.toString()
             val calories = 0
+            val calorieGoal = 0
             val feet = 0
             val inches = 0
             val weight = 0
@@ -65,6 +66,7 @@ class SignUpPage : AppCompatActivity() {
                             UserInformation(
                                 username,
                                 calories,
+                                calorieGoal,
                                 feet,
                                 inches,
                                 weight

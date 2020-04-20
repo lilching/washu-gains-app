@@ -38,7 +38,7 @@ class InfoTab : Fragment() {
         var feet = 0
         var inches = 0
         var weight = 0
-        var calories = 0
+        var calorieGoal = 0
 
         val username = arguments?.getString("username")
         infoUserText.text = username
@@ -52,7 +52,7 @@ class InfoTab : Fragment() {
                         feet = document.get("feet").toString().toInt()
                         inches = document.get("inches").toString().toInt()
                         weight = document.get("weight").toString().toInt()
-                        calories = document.get("calories").toString().toInt()
+                        calorieGoal = document.get("calorieGoal").toString().toInt()
 
                         val fragment = DisplayInfoFragment()
                         var bundle = Bundle()
@@ -60,7 +60,7 @@ class InfoTab : Fragment() {
                         bundle.putInt("feet",feet)
                         bundle.putInt("inches",inches)
                         bundle.putInt("weight", weight)
-                        bundle.putInt("calories", calories)
+                        bundle.putInt("calorieGoal", calorieGoal)
                         fragment.arguments = bundle
                         val transaction = activity!!.supportFragmentManager.beginTransaction()
                         transaction.replace(R.id.container, fragment)

@@ -42,13 +42,13 @@ class DisplayInfoFragment : Fragment() {
         var feet = arguments!!.getInt("feet")
         var inches = arguments!!.getInt("inches")
         var weight = arguments!!.getInt("weight")
-        var calories = arguments!!.getInt("calories")
+        var calorieGoal = arguments!!.getInt("calorieGoal")
         var username = arguments!!.getString("username")
 
         myFeet.text = "height: " + feet.toString() + "' "
         myInch.text = inches.toString() + "''"
         myWeight.text = "weight: " + weight.toString() + "lbs"
-        myCalories.text = "calories: " + calories.toString()
+        myCalories.text = "calories: " + calorieGoal.toString()
 
         logoutButton = logout
         updateButton = myInfoEdit
@@ -67,7 +67,7 @@ class DisplayInfoFragment : Fragment() {
             bundle.putInt("feet",feet)
             bundle.putInt("inches",inches)
             bundle.putInt("weight", weight)
-            bundle.putInt("calories", calories)
+            bundle.putInt("calorieGoal", calorieGoal)
             fragment.arguments = bundle
             val transaction = activity!!.supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container, fragment)

@@ -25,7 +25,7 @@ class InputPage: AppCompatActivity() {
         super.onStart()
         db = FirebaseFirestore.getInstance()
         val username = intent.getStringExtra("username")
-        var calories = intent?.getStringExtra("calories")
+        var calorieGoal = intent?.getStringExtra("calorieGoal")
         val dailyInfoList=intent.getParcelableArrayListExtra<DailyInfo>("dailyInfoList")
 
 
@@ -33,15 +33,16 @@ class InputPage: AppCompatActivity() {
             var inches = inchInput.text.toString()
             var feet = feetInput.text.toString()
             var weight = weightInput.text.toString()
-            calories = caloriesInput.text.toString()
+            var calories = 10
+            calorieGoal = caloriesInput.text.toString()
 
             db.collection("users").whereEqualTo("username", username).get()
                 .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                     if (task.isSuccessful) {
                         for (document in task.result!!) {
                             val reference = db.collection("users").document(document.id)
-                            reference.update("calories", calories).addOnSuccessListener {
-                                println("calories updated")
+                            reference.update("calorieGoal", calorieGoal).addOnSuccessListener {
+                                println("calorieGoal updated")
                             }
                             reference.update("feet", feet).addOnSuccessListener {
                                 println("feet updated")
@@ -52,14 +53,17 @@ class InputPage: AppCompatActivity() {
                             reference.update("weight", weight).addOnSuccessListener {
                                 println("weight updated")
                             }
+                            reference.update("Calories", calories).addOnSuccessListener {
+                                println("weight updated")
+                            }
                         }
                     }
                 })
 
-            if (feet != "" && inches != "" && weight != "" && calories != "") {
+            if (feet != "" && inches != "" && weight != "" && calorieGoal != "") {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("username", username)
-                intent.putExtra("calories", calories)
+                intent.putExtra("calorieGoal", calorieGoal)
                 intent.putExtra("dailyInfoList",dailyInfoList)
                 startActivity(intent)
             }
