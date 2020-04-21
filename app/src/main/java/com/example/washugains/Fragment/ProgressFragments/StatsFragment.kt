@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import com.example.washugains.Activity.MainActivity
 import com.example.washugains.DataClass.DailyInfo
 import com.example.washugains.R
 import com.github.mikephil.charting.animation.Easing
@@ -42,7 +41,7 @@ class StatsFragment() : Fragment(){
             Typeface.createFromAsset(activity?.assets, "OpenSans-Regular.ttf")
         tf_light =
             Typeface.createFromAsset(activity?.assets, "OpenSans-Light.ttf")
-        return inflater.inflate(R.layout.chart_fragment, container, false)
+        return inflater.inflate(R.layout.piechart_fragment, container, false)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -102,7 +101,7 @@ class StatsFragment() : Fragment(){
                             legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
                             legend.horizontalAlignment = Legend.LegendHorizontalAlignment.LEFT
                             legend.orientation = Legend.LegendOrientation.VERTICAL
-                            legend.setDrawInside(true)
+                            legend.setDrawInside(false)
                             legend.formSize = 10f
                             legend.form = Legend.LegendForm.CIRCLE
                             legend.textSize = 15f
