@@ -70,7 +70,7 @@
         <LinearLayout
             android:id="@+id/linearLay"
             android:layout_width="300dp"
-            android:layout_height="400dp"
+            android:layout_height="410dp"
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="110dp"
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_more_vert"
-                android:layout_marginVertical="20dp"
+                android:layout_marginVertical="5dp"
                 android:layout_gravity="center_horizontal"
                 />
 
@@ -119,11 +119,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:gravity="center"
+                android:textAlignment="center"
                 android:fontFamily="@font/roboto_slab_bold"
                 android:text="You Can Do It!"
                 android:textSize="20dp"
                 android:padding="10dp"
-                android:layout_marginBottom="30dp"
+                />
+
+            <TextView
+                android:id="@+id/quoteAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:gravity="right"
+                android:fontFamily="@font/roboto_light"
+                android:text="-Author"
+                android:textSize="20dp"
                 />
 
         </LinearLayout>
