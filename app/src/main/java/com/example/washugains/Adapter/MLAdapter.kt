@@ -6,6 +6,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.washugains.R
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel
+import kotlin.math.roundToInt
+
 class MLViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.ml_result_row, parent, false)) {
     private val name:TextView=itemView.findViewById(R.id.label)
@@ -15,7 +17,8 @@ class MLViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
     fun bind(label : FirebaseVisionImageLabel){
         name.text="Label: "+label.text
-        confidence.text="Confidence: "+label.confidence
+        val formattedConfidence = ((label.confidence * 10000).roundToInt()/100.0).toString()+"%"
+        confidence.text="Confidence: "+formattedConfidence
     }
 }
 
