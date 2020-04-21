@@ -48,74 +48,82 @@ class SignUpPage : AppCompatActivity() {
             val feet = 0
             val inches = 0
             val weight = 0
-            mAuth.createUserWithEmailAndPassword(
-                emailSignUpInput.text.toString(),
-                passSignUpInput.text.toString()
-            )
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val user = mAuth.currentUser
 
-                        //update username
-                        val profileUpdate = UserProfileChangeRequest.Builder()
-                            .setDisplayName(username).build()
-                        user?.updateProfile(profileUpdate)
+            if (emailSignUpInput.text.toString() == "" || passSignUpInput.text.toString() == "") {
+                val toast=Toast.makeText(this,"Failed! Please fill in ALL inputs!",Toast.LENGTH_SHORT)
+                toast.show()
+            }
+            else {
+                mAuth.createUserWithEmailAndPassword(
+                    emailSignUpInput.text.toString(),
+                    passSignUpInput.text.toString()
+                )
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val user = mAuth.currentUser
 
-                        //bundle information in created data class UserInformation
-                        val userInfo =
-                            UserInformation(
-                                username,
-                                calories,
-                                calorieGoal,
-                                feet,
-                                inches,
-                                weight
-                            )
+                            //update username
+                            val profileUpdate = UserProfileChangeRequest.Builder()
+                                .setDisplayName(username).build()
+                            user?.updateProfile(profileUpdate)
 
-                        val userMap: MutableMap<String, Any> = HashMap()
-                        userMap["username"] = userInfo.username
-
-                        if (user?.uid != null) {
-                            db.collection("users").document(user?.uid)
-                                .set(userMap)
-
-                            val dateMap = HashMap<String, DailyInfo>() as MutableMap<String, Any>
-                            for (i in 0..30 as Long) {
-                                val date =
-                                    LocalDate.now().minusDays(i).toString()
-                                dateMap.put(date, DailyInfo(date))
-                            }
-
-                            var batch = db.batch()
-                            for (date in dateMap.keys) {
-                                var docRef = db.collection("users").document(user.uid)
-                                    .collection("dates")
-                                    .document(date)
-                                batch.set(
-                                    docRef,
-                                    dateMap.getOrDefault(date, DailyInfo(date))
+                            //bundle information in created data class UserInformation
+                            val userInfo =
+                                UserInformation(
+                                    username,
+                                    calories,
+                                    calorieGoal,
+                                    feet,
+                                    inches,
+                                    weight
                                 )
-                            }
-                            batch.commit()
+
+                            val userMap: MutableMap<String, Any> = HashMap()
+                            userMap["username"] = userInfo.username
+
+                            if (user?.uid != null) {
+                                db.collection("users").document(user?.uid)
+                                    .set(userMap)
+
+                                val dateMap =
+                                    HashMap<String, DailyInfo>() as MutableMap<String, Any>
+                                for (i in 0..30 as Long) {
+                                    val date =
+                                        LocalDate.now().minusDays(i).toString()
+                                    dateMap.put(date, DailyInfo(date))
+                                }
+
+                                var batch = db.batch()
+                                for (date in dateMap.keys) {
+                                    var docRef = db.collection("users").document(user.uid)
+                                        .collection("dates")
+                                        .document(date)
+                                    batch.set(
+                                        docRef,
+                                        dateMap.getOrDefault(date, DailyInfo(date))
+                                    )
+                                }
+                                batch.commit()
 
 
-                            Toast.makeText(this, "Account Created", Toast.LENGTH_SHORT)
-                                .show()
-                            val intent = Intent(this, InputPage::class.java)
-                            // val dailyInfoList=ArrayList<DailyInfo>(dateMap.values as MutableCollection<out DailyInfo>)
-                            //  intent.putExtra("dailyInfoList", dailyInfoList)
-                            intent.putExtra("username", username)
+                                Toast.makeText(this, "Account Created", Toast.LENGTH_SHORT)
+                                    .show()
+                                val intent = Intent(this, InputPage::class.java)
+                                // val dailyInfoList=ArrayList<DailyInfo>(dateMap.values as MutableCollection<out DailyInfo>)
+                                //  intent.putExtra("dailyInfoList", dailyInfoList)
+                                intent.putExtra("username", username)
 //                            intent.putExtra("calories", calories)
 //                            intent.putExtra("height", feet)
 //                            intent.putExtra("weight", weight)
-                            startActivity(intent)
+                                startActivity(intent)
+                            }
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
-                    else {
-                        // If sign in fails, display a message to the user.
-                        Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                    }
-                }
+            }
         }
 
         loginButton = loginBack
