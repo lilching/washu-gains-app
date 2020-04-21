@@ -29,16 +29,16 @@ class WelcomePage : Fragment() {
 
         var quoteList = ArrayList<String>()
         //Walt Disney
-        quoteList.add("The way to get started is to quit talking and begin doing")
+        quoteList.add("\"The way to get started is to quit talking and begin doing\"")
         //Winston Churchill
-        quoteList.add("The pessimist sees difficulty in every opportunity. The optimist sees the " +
-                "opportunity in every difficulty")
+        quoteList.add("\"The pessimist sees difficulty in every opportunity. The optimist sees the " +
+                "opportunity in every difficulty\"")
         //Will Rogers
-        quoteList.add("Don't let yesterday take up too much of today")
+        quoteList.add("\"Don't let yesterday take up too much of today\"")
         //Vince Lombardi
-        quoteList.add("It's not whether you get knocked down, it's whether you get up")
+        quoteList.add("\"It's not whether you get knocked down, it's whether you get up\"")
         //Johann Wolfgang Von Goethe
-        quoteList.add("Knowing is not enough, we must apply. Wishing is not enough, we must do")
+        quoteList.add("\"Knowing is not enough, we must apply. Wishing is not enough, we must do\"")
 
         inspireQuote = inspirationalQuote
         inspireQuote.text = quoteList.random()
