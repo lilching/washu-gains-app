@@ -27,6 +27,7 @@ class ExerciseFragment : Fragment() {
 
     val exerciseList : ArrayList<Exercise> = ArrayList()
     var exerciseString : ArrayList<String> = ArrayList()
+    var exercises: ArrayList<Exercise> = ArrayList()
     val exerciseMETlist: ArrayList<Int> = ArrayList()
 
 
@@ -49,22 +50,12 @@ class ExerciseFragment : Fragment() {
         var username = arguments!!.getString("username")!!
 
         val recyclerView = view?.findViewById<RecyclerView>(R.id.exerciseRecyclerView)
-        val adapter = ExerciseAdapter(exerciseString, exerciseMETlist, username)
+        val adapter = ExerciseAdapter(exerciseString, exercises, exerciseMETlist, username)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(context)
         val multiLineDivider = MultiLineDivider(context!!)
         recyclerView?.addItemDecoration(multiLineDivider)
 
-//        db.collection("users").whereEqualTo("username", username).get()
-//            .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-//                if (task.isSuccessful) {
-//                    for (document in task.result!!) {
-//                        weight = document.get("weight").toString().toInt()
-//                        calories = document.get("calories").toString().toInt()
-//                        println(calories.toString() + "CALORIES HERE")
-//                    }
-//                }
-//            })
 
         val ref = FirebaseDatabase.getInstance().getReference("sports")
         ref.addValueEventListener(object : ValueEventListener {
@@ -76,6 +67,7 @@ class ExerciseFragment : Fragment() {
                     exerciseList.add(exercise!!)
                     if (exercise!=null){
                         exerciseString.add(exercise.activity)
+                        exercises.add(exercise)
                         exerciseMETlist.add(exercise.met)
                     }
                 }

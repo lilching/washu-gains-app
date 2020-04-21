@@ -43,7 +43,6 @@ class SignUpPage : AppCompatActivity() {
         signUpButton.setOnClickListener {
             val mAuth = FirebaseAuth.getInstance()
             val username = userSignUpInput.text.toString()
-            val calories = 0
             val calorieGoal = 0
             val feet = 0
             val inches = 0
@@ -71,7 +70,6 @@ class SignUpPage : AppCompatActivity() {
                             val userInfo =
                                 UserInformation(
                                     username,
-                                    calories,
                                     calorieGoal,
                                     feet,
                                     inches,
@@ -109,12 +107,7 @@ class SignUpPage : AppCompatActivity() {
                                 Toast.makeText(this, "Account Created", Toast.LENGTH_SHORT)
                                     .show()
                                 val intent = Intent(this, InputPage::class.java)
-                                // val dailyInfoList=ArrayList<DailyInfo>(dateMap.values as MutableCollection<out DailyInfo>)
-                                //  intent.putExtra("dailyInfoList", dailyInfoList)
                                 intent.putExtra("username", username)
-//                            intent.putExtra("calories", calories)
-//                            intent.putExtra("height", feet)
-//                            intent.putExtra("weight", weight)
                                 startActivity(intent)
                             }
                         } else {

@@ -9,4 +9,6 @@ data class DailyInfo (val date: String = "",
                       val carb: Double = 0.0,
                       val fat: Double = 0.0,
                       val sugars: Double = 0.0,
-                      val protein:Double = 0.0):Parcelable
+                      val protein:Double = 0.0,
+                      val caloriesBurned: Int=0
+                    ):Parcelable

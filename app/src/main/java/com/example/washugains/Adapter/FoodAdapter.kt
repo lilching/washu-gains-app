@@ -53,7 +53,8 @@ class FoodViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
                         if (dailyData!=null)
                         dailyData=
                             DailyInfo(dailyData.date,dailyData.calories+food.calories,dailyData.carb+food.carb,
-                        dailyData.fat+food.fat,dailyData.sugars+food.sugars,dailyData.protein+food.protein)
+                        dailyData.fat+food.fat,dailyData.sugars+food.sugars,dailyData.protein+food.protein
+                            , dailyData.caloriesBurned)
                         db.collection("users").document(uid).collection("dates")
                             .document(currentDate).set(dailyData!!)
                     }
