@@ -10,10 +10,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" />
 
+    <!--permission to read in the file -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"-->
-<!--        android:maxSdkVersion="18" />-->
 
     <application
         android:name="androidx.multidex.MultiDexApplication"
@@ -23,6 +22,7 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:requestLegacyExternalStorage="true"
         tools:replace="android:name">
 
         <activity android:name=".Activity.LoginPage">
