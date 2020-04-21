@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
     val REQUEST_CAMERA_PERMISSIONS = 1;
     val IMAGE_CAPTURE_CODE = 2;
     var username:String ="Buddy"
-   // var isWelcomePage=true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
