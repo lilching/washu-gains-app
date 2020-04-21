@@ -75,7 +75,7 @@ dependencies {
 
     //for ML
     implementation 'com.google.firebase:firebase-ml-vision:24.0.2'
-    implementation 'com.google.firebase:firebase-ml-vision-object-detection-model:19.0.4'
+    implementation 'com.google.firebase:firebase-ml-vision-image-label-model:20.0.0'
 
 
 
