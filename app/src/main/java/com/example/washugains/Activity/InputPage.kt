@@ -33,7 +33,6 @@ class InputPage: AppCompatActivity() {
             var inches = inchInput.text.toString()
             var feet = feetInput.text.toString()
             var weight = weightInput.text.toString()
-            var calories = 1000
             calorieGoal = caloriesInput.text.toString()
 
             db.collection("users").whereEqualTo("username", username).get()
@@ -51,9 +50,6 @@ class InputPage: AppCompatActivity() {
                                 println("inches updated")
                             }
                             reference.update("weight", weight).addOnSuccessListener {
-                                println("weight updated")
-                            }
-                            reference.update("calories", calories).addOnSuccessListener {
                                 println("weight updated")
                             }
                         }
