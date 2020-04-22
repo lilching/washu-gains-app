@@ -14,6 +14,7 @@ import com.example.washugains.DataClass.DailyInfo
 import com.example.washugains.DataClass.Food
 import com.example.washugains.ExpandableLayout
 import com.example.washugains.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.expandable_exercise_row.view.*
@@ -31,7 +32,7 @@ class FoodViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     private val protein: TextView=itemView.findViewById(R.id.proteinText)
     private val sugar: TextView=itemView.findViewById(R.id.sugarText)
     private val fat: TextView=itemView.findViewById(R.id.fatText)
-    private val foodButton:Button=itemView.findViewById(R.id.addFoodButton)
+    private val foodButton:FloatingActionButton=itemView.findViewById(R.id.addFoodButton)
 
 
     fun bind(food : Food,db:FirebaseFirestore,currentDate:String,uid:String?){
@@ -97,6 +98,8 @@ class FoodAdapter(private val list : ArrayList<Food>, private val listString : A
                 }
             }
         })
+
+
     }
 
     override fun getItemCount(): Int {

@@ -25,42 +25,40 @@
     <LinearLayout
         android:id="@+id/childLay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:padding="10dp"
+        android:layout_height="72dp"
+        android:paddingHorizontal="10dp"
         android:orientation="horizontal"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/parentLay"
+        android:weightSum="1"
         >
 
         <TextView
             android:id="@+id/childView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:layout_marginRight="5dp"
             android:textSize="15dp"
             android:text="COMPLETED:"
+            android:layout_weight="0.35"
             />
 
         <EditText
             android:id="@+id/minutesEntered"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="25dp"
-            android:textColor="@android:color/white"
             android:inputType="number"
+            android:layout_weight="0.45"
             android:hint="Enter minutes"
-            android:textColorHint="@android:color/holo_blue_light"
             />
 
-        <Button
-            style="@style/RadioButton"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/enter"
             android:layout_width="wrap_content"
+            android:layout_gravity="end|center"
             android:layout_height="wrap_content"
-            android:text="Enter"
-            android:textColorHint="@android:color/holo_blue_light"
+            android:src="@drawable/ic_add"
+            app:backgroundTint="#FAFAFA"
+            app:rippleColor="#a73737"
             />
 
     </LinearLayout>

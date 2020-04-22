@@ -1,14 +1,17 @@
 package com.example.washugains.Adapter
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.washugains.DataClass.DailyInfo
 import com.example.washugains.DataClass.Exercise
 import com.example.washugains.ExpandableLayout
 import com.example.washugains.R
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
@@ -22,7 +25,7 @@ class ExerciseHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.expandable_exercise_row, parent, false)) {
 
     private val info: TextView = itemView.findViewById(R.id.parentView)
-    private val enter: Button = itemView.findViewById(R.id.enter)
+    private val enter: FloatingActionButton = itemView.findViewById(R.id.enter)
     private val minutes: TextView = itemView.findViewById(R.id.minutesEntered)
     private val uid=FirebaseAuth.getInstance().uid
 
@@ -92,6 +95,7 @@ class ExerciseAdapter(private val list : ArrayList<String>, private val elist : 
         return ExerciseHolder(inflater,parent)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ExerciseHolder, position: Int) {
         holder.bind(ExerciseList[position], filteredMETList[position], db, LocalDate.now().toString(), username)
         holder.itemView.parentView.text = filteredExerciseList[position]
