@@ -13,7 +13,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="60dp"
                 android:orientation="horizontal"
                 android:paddingHorizontal="10dp"
                 android:weightSum="1"
@@ -36,6 +36,7 @@
                     android:src="@drawable/ic_add"
                     app:backgroundTint="#FAFAFA"
                     app:rippleColor="#a73737"
+                    app:fabCustomSize="40dp"
                  />
             </LinearLayout>
     </RelativeLayout>
