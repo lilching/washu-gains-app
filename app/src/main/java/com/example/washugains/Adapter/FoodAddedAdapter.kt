@@ -30,7 +30,7 @@ class FoodAddedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     private val deleteButton:Button=itemView.findViewById(R.id.deleteFoodButton)
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun bind(food : Food, db: FirebaseFirestore, currentDate:String, uid:String?, list:ArrayList<Food>, viewModel: FoodAddedViewModel){
+    fun bind(food : Food, db: FirebaseFirestore, currentDate:String, uid:String?, viewModel: FoodAddedViewModel){
         name.text=food.name
         calories.text="Calories: "+food.calories
         carbs.text="Carbs: "+food.carb+"g"
@@ -88,7 +88,7 @@ class FoodAddedAdapter(private val list : ArrayList<Food>,private val viewModel:
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: FoodAddedViewHolder, position: Int) {
-        holder.bind(list[position],db,LocalDate.now().toString(),uid,list,viewModel)
+        holder.bind(list[position],db,LocalDate.now().toString(),uid,viewModel)
     }
 
     override fun getItemCount(): Int {
