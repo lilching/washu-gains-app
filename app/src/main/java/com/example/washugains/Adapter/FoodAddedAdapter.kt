@@ -12,6 +12,7 @@ import com.example.washugains.DataClass.DailyInfo
 import com.example.washugains.DataClass.Food
 import com.example.washugains.FoodAddedModel.FoodAddedViewModel
 import com.example.washugains.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.time.LocalDate
@@ -27,7 +28,7 @@ class FoodAddedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     private val protein: TextView=itemView.findViewById(R.id.proteinAddedText)
     private val sugar: TextView=itemView.findViewById(R.id.sugarAddedText)
     private val fat: TextView=itemView.findViewById(R.id.fatAddedText)
-    private val deleteButton:Button=itemView.findViewById(R.id.deleteFoodButton)
+    private val deleteButton:FloatingActionButton=itemView.findViewById(R.id.deleteFoodButton)
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun bind(food : Food, db: FirebaseFirestore, currentDate:String, uid:String?, viewModel: FoodAddedViewModel){
