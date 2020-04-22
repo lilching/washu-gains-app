@@ -13,6 +13,11 @@
         android:background="#FAFAFA"
         >
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -21,6 +26,19 @@
             android:tint="#1FFFFFFF"
             />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/custom_gradient"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            >
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -28,6 +46,15 @@
             android:layout_gravity="bottom"
             android:src="@drawable/red_wave"
             />
+
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="140dp"-->
+<!--                android:layout_gravity="top"-->
+<!--                android:background="@drawable/custom_gradient_2"/>-->
+
+
+        </FrameLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -70,7 +97,7 @@
         <LinearLayout
             android:id="@+id/linearLay"
             android:layout_width="300dp"
-            android:layout_height="410dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="110dp"
@@ -135,6 +162,7 @@
                 android:fontFamily="@font/roboto_light"
                 android:text="-Author"
                 android:textSize="20dp"
+                android:layout_marginBottom="20dp"
                 />
 
         </LinearLayout>
