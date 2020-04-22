@@ -52,11 +52,5 @@ class AddedFoodFragment: Fragment() {
             foodList.addAll(foodItems)
             adapter.notifyDataSetChanged()
         })
-
-
-
-
-
-
     }
 }

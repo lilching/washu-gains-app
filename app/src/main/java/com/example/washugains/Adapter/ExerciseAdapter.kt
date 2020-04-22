@@ -43,7 +43,12 @@ class ExerciseHolder(inflater: LayoutInflater, parent: ViewGroup) :
                             if (uid!=null) {
                                 db.collection("users").document(uid).collection("dates")
                                     .document(currentDate).collection("exerciseAdded").add(exercise)
-//                                .addOnSuccessListener { documentReference -> food.id=documentReference.id
+                                .addOnSuccessListener { documentReference ->
+                                    exercise.id=documentReference.id
+                                    exercise.calories = calsLost
+                                    println(exercise.id + "adding id here!!!")
+                                    println(documentReference.id + "doc ref hoooo")
+                                }
                                 db.collection("users").document(uid).collection("dates")
                                     .document(currentDate).get()
                                     .addOnSuccessListener { documentSnapshot ->
