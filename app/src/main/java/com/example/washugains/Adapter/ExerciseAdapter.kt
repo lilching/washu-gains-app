@@ -45,10 +45,13 @@ class ExerciseHolder(inflater: LayoutInflater, parent: ViewGroup) :
                             val calsLost = caloriesBurned(met, minutes.text.toString().toInt(), weight)
                             if (uid!=null) {
                                 exercise.calories = calsLost
+                                println(exercise.id + "what is the id? it is blank.")
                                 db.collection("users").document(uid).collection("dates")
                                     .document(currentDate).collection("exerciseAdded").add(exercise)
-                                .addOnSuccessListener { documentReference -> exercise.id=documentReference.id } // todo this isn't working
-//                                    println(exercise.id + "adding id here!!!")
+                                .addOnSuccessListener { documentReference -> exercise.id=documentReference.id
+                                    println(exercise.id + "adding id here!!! and its the id!!")
+                                } // todo this isn't working
+                                println(exercise.id + "checking the id again here!! and its blank again :(")
                                 db.collection("users").document(uid).collection("dates")
                                     .document(currentDate).get()
                                     .addOnSuccessListener { documentSnapshot ->
