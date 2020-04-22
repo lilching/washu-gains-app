@@ -4,10 +4,7 @@ package com.example.washugains.Adapter
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Filter
-import android.widget.Filterable
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.washugains.DataClass.DailyInfo
@@ -46,7 +43,8 @@ class FoodViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
             foodButton.setOnClickListener {
                 db.collection("users").document(uid).collection("dates")
                     .document(currentDate).collection("foodAdded").add(food)
-                    .addOnSuccessListener { documentReference -> food.id=documentReference.id }
+                    .addOnSuccessListener {
+                        Toast.makeText(itemView.context,"Food added!", Toast.LENGTH_SHORT).show() }
                 //add to today's data and update to firebase
                 db.collection("users").document(uid).collection("dates")
                     .document(currentDate).get().addOnSuccessListener { documentSnapshot ->

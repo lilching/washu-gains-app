@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.washugains.Fragment.ProgressFragments.AddedExerciseFragment
 import com.example.washugains.Fragment.ProgressFragments.AddedFoodFragment
-import com.example.washugains.Fragment.ProgressFragments.MonthlyFragment
+import com.example.washugains.Fragment.ProgressFragments.WeeklyFragment
 import com.example.washugains.Fragment.ProgressFragments.StatsFragment
 import com.example.washugains.R
 import kotlinx.android.synthetic.main.progress_page.*
@@ -58,7 +58,7 @@ class ProgressTab : Fragment() {
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> StatsFragment()
-            1 -> MonthlyFragment()
+            1 -> WeeklyFragment()
             2 -> AddedFoodFragment()
             else -> AddedExerciseFragment()
         }
@@ -67,7 +67,7 @@ class ProgressTab : Fragment() {
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
             0 -> "Daily Stats"
-            1 -> "Monthly Progress"
+            1 -> "Weekly Progress"
             2->  "Food"
             else -> "Exercise"
         }

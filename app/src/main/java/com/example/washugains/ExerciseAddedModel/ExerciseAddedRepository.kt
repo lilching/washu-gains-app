@@ -19,7 +19,7 @@ class ExerciseAddedRepository {
                     val exerciseList=ArrayList<Exercise>()
                     for (document in QuerySnapshot) {
                         var exercise = document.toObject(Exercise::class.java)
-//                        exercise?.id = document.id
+                        exercise?.id = document.id
                         if (exercise != null) {
                             exerciseList.add(exercise)
                         }

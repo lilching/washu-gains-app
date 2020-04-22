@@ -56,9 +56,6 @@ class ExerciseAddedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
             }
         }
     }
-    fun roundTo2Helper(num:Double):Double{
-        return Math.round(num * 100) /100.0
-    }
 }
 
 class ExerciseAddedAdapter(private val list : ArrayList<Exercise>, private val viewModel: ExerciseAddedViewModel)

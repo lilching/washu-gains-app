@@ -6,23 +6,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/foodAddedText"
+        android:id="@+id/exercisesAddedText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Food Added"
+        android:text="Exercise Added"
         android:textSize="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/foodAddedRecyclerView"
+        android:id="@+id/exerciseAddedRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:scrollbars="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foodAddedText" />
+        app:layout_constraintTop_toBottomOf="@+id/exercisesAddedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,15 +12,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.washugains.Adapter.ExerciseAddedAdapter
-import com.example.washugains.Adapter.FoodAddedAdapter
 import com.example.washugains.DataClass.Exercise
-import com.example.washugains.DataClass.Food
 import com.example.washugains.ExerciseAddedModel.ExerciseAddedViewModel
-import com.example.washugains.FoodAddedModel.FoodAddedViewModel
 import com.example.washugains.R
 import com.google.firebase.auth.FirebaseAuth
 import com.sakebook.android.library.multilinedevider.MultiLineDivider
-import kotlinx.android.synthetic.main.added_food_fragment.*
+import kotlinx.android.synthetic.main.added_exercise_fragment.*
 
 class AddedExerciseFragment:Fragment() {
     val exerciseList : ArrayList<Exercise> = ArrayList()
@@ -31,14 +28,14 @@ class AddedExerciseFragment:Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.added_food_fragment, container, false)
+        return inflater.inflate(R.layout.added_exercise_fragment, container, false)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStart() {
         super.onStart()
-        foodAddedText.text = "Exercises Added"
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.foodAddedRecyclerView)
+        exercisesAddedText.text = "Exercises Added"
+        val recyclerView = view?.findViewById<RecyclerView>(R.id.exerciseAddedRecyclerView)
         viewModel= ViewModelProvider(this).get(ExerciseAddedViewModel::class.java)
         val adapter = ExerciseAddedAdapter(exerciseList,viewModel)
         recyclerView?.adapter = adapter
