@@ -39,7 +39,6 @@ class FoodAddedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         fat.text="Fat: "+food.fat+"g"
         if(uid!=null) {
             deleteButton.setOnClickListener {
-                println(food.id + "food id bitch")
                 db.collection("users").document(uid).collection("dates")
                     .document(currentDate).collection("foodAdded").document(food.id).delete()
                     .addOnSuccessListener {

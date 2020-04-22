@@ -41,14 +41,11 @@ class ExerciseHolder(inflater: LayoutInflater, parent: ViewGroup) :
                         enter.setOnClickListener{
                             val calsLost = caloriesBurned(met, minutes.text.toString().toInt(), weight)
                             if (uid!=null) {
+                                exercise.calories = calsLost
                                 db.collection("users").document(uid).collection("dates")
                                     .document(currentDate).collection("exerciseAdded").add(exercise)
-                                .addOnSuccessListener { documentReference ->
-                                    exercise.id=documentReference.id
-                                    exercise.calories = calsLost
-                                    println(exercise.id + "adding id here!!!")
-                                    println(documentReference.id + "doc ref hoooo")
-                                }
+                                .addOnSuccessListener { documentReference -> exercise.id=documentReference.id } // todo this isn't working
+//                                    println(exercise.id + "adding id here!!!")
                                 db.collection("users").document(uid).collection("dates")
                                     .document(currentDate).get()
                                     .addOnSuccessListener { documentSnapshot ->
