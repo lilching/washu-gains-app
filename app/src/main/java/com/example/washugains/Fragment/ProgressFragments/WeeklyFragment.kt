@@ -60,7 +60,6 @@ class WeeklyFragment:Fragment() {
                 .addOnSuccessListener { document ->
                     if (document.exists()) {
                         val data = document.data
-                        //   val username = data?.get("username") as String
                         dailyGoal = Integer.parseInt(data?.get("calorieGoal") as String)
                     }
                 }
@@ -114,7 +113,7 @@ class WeeklyFragment:Fragment() {
                                     leftAxis.valueFormatter = LargeValueFormatter()
                                     leftAxis.setDrawGridLines(true)
                                     leftAxis.spaceTop = 35f
-                                    leftAxis.axisMinimum = 0f // this replaces setStartAtZero(true)
+                                    leftAxis.axisMinimum = 0f
                                     val ll = LimitLine(dailyGoal.toFloat(), "Goal")
                                     ll.setLineColor(Color.RED)
                                     ll.setLineWidth(1f)
@@ -128,9 +127,6 @@ class WeeklyFragment:Fragment() {
 
                                     val valuesCalBurned = ArrayList<BarEntry>()
                                     val valuesCalEaten = ArrayList<BarEntry>()
-                                  //  val valuesGoal = ArrayList<BarEntry>()
-
-
 
                                     val daysInAWeek = ArrayList<String>()
                                     for (i  in 0..6 as Long) {
@@ -147,27 +143,21 @@ class WeeklyFragment:Fragment() {
                                     }
                                     valuesCalBurned.reverse()
                                     valuesCalEaten.reverse()
-                                    
+
                                     val set2: BarDataSet
                                     val set3: BarDataSet
 
 
                                     if (chart.data != null && chart.data.dataSetCount > 0) {
-                                     //   set1 = chart.data.getDataSetByIndex(0) as BarDataSet
                                         set2 = chart.data.getDataSetByIndex(0) as BarDataSet
                                         set3 = chart.data.getDataSetByIndex(1) as BarDataSet
 
-                                      //  set1.values = valuesGoal
                                         set2.values = valuesCalEaten
                                         set3.values = valuesCalBurned
 
                                         chart.data.notifyDataChanged()
                                         chart.notifyDataSetChanged()
                                     } else {
-                                        // create 4 DataSets
-//                                        set1 = BarDataSet(valuesGoal, "Goal")
-//                                        set1.color = Color.rgb(104, 241, 175)
-//                                        set1.valueTextSize=10f
                                         set2 = BarDataSet(valuesCalEaten, "Calories Eaten")
                                         set2.color = Color.rgb(164, 228, 251)
                                         set2.valueTextSize=10f
@@ -193,8 +183,6 @@ class WeeklyFragment:Fragment() {
                                     xAxis.mAxisMaximum=6f
                                     xAxis.axisMinimum=0f
                                     xAxis.position = XAxisPosition.BOTTOM
-                                   // xAxis.spaceMax=0.1f
-
                                     xAxis.setCenterAxisLabels(true)
                                     xAxis.valueFormatter = object : ValueFormatter() {
                                         override fun getFormattedValue(value: Float): String {
@@ -209,8 +197,7 @@ class WeeklyFragment:Fragment() {
                                     // add a nice and smooth animation
                                     chart.animateY(1400, Easing.EaseInOutQuad)
                                     val groupSpace = 0.2f
-                                    val barSpace = 0f // x4 DataSet
-
+                                    val barSpace = 0f
                                     chart.groupBars(0f, groupSpace, barSpace)
                                     chart.invalidate()
 
