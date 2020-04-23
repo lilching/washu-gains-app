@@ -53,6 +53,7 @@ class ExerciseHolder(inflater: LayoutInflater, parent: ViewGroup) :
                     Toast.makeText(itemView.context, "Please enter a value", Toast.LENGTH_SHORT)
                         .show()
                 } else {
+                    val met = exercise.met
                     val calsLost =
                         caloriesBurned(met, minutes.text.toString().toInt(), weight)
                     //                                    val exerciseHold = exercise
