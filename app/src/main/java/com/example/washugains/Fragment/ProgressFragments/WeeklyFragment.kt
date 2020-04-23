@@ -13,9 +13,10 @@ import com.example.washugains.DataClass.DailyInfo
 import com.example.washugains.R
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.components.LimitLine
 import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
@@ -100,49 +101,59 @@ class WeeklyFragment:Fragment() {
                                     l.yOffset = 20f
                                     l.xOffset = 10f
                                     l.yEntrySpace = 0f
-                                    l.textSize = 8f
+                                    l.textSize = 15f
 
 
                                     val leftAxis: YAxis = chart.getAxisLeft()
                                     leftAxis.typeface = tf_light
                                     leftAxis.valueFormatter = LargeValueFormatter()
-                                    leftAxis.setDrawGridLines(false)
+                                    leftAxis.setDrawGridLines(true)
                                     leftAxis.spaceTop = 35f
                                     leftAxis.axisMinimum = 0f // this replaces setStartAtZero(true)
+                                    val ll = LimitLine(dailyGoal.toFloat(), "Goal")
+                                    ll.setLineColor(Color.RED)
+                                    ll.setLineWidth(1f)
+                                    ll.setTextColor(Color.BLACK)
+                                    ll.setTextSize(12f)
+                                    leftAxis.addLimitLine(ll)
+
 
 
                                     chart.getAxisRight().setEnabled(false)
 
                                     val valuesCalBurned = ArrayList<BarEntry>()
                                     val valuesCalEaten = ArrayList<BarEntry>()
-                                    val valuesGoal = ArrayList<BarEntry>()
+                                  //  val valuesGoal = ArrayList<BarEntry>()
 
 
 
                                     val daysInAWeek = ArrayList<String>()
                                     for (i  in 0..6 as Long) {
-                                        val date = LocalDate.now().minusDays(i).toString()
-                                        daysInAWeek.add(date)
-                                        val thisday=dateMap[date]
+                                        val date = LocalDate.now().minusDays(i)
+                                        val monthDay=date.monthValue.toString()+"-"+date.dayOfMonth.toString()
+                                        daysInAWeek.add(monthDay)
+                                        val thisday=dateMap[date.toString()]
                                         if (thisday!=null) {
                                             valuesCalBurned.add(BarEntry(i.toFloat(), thisday.caloriesBurned.toFloat()))
                                             valuesCalEaten.add(BarEntry(i.toFloat(), thisday.calories.toFloat()))
-                                            valuesGoal.add(BarEntry(i.toFloat(),dailyGoal.toFloat()))
+
 
                                         }
                                     }
+                                    valuesCalBurned.reverse()
+                                    valuesCalEaten.reverse()
 
-                                    val set1: BarDataSet
+                                  //  val set1: BarDataSet
                                     val set2: BarDataSet
                                     val set3: BarDataSet
 
 
                                     if (chart.data != null && chart.data.dataSetCount > 0) {
-                                        set1 = chart.data.getDataSetByIndex(0) as BarDataSet
-                                        set2 = chart.data.getDataSetByIndex(1) as BarDataSet
-                                        set3 = chart.data.getDataSetByIndex(2) as BarDataSet
+                                     //   set1 = chart.data.getDataSetByIndex(0) as BarDataSet
+                                        set2 = chart.data.getDataSetByIndex(0) as BarDataSet
+                                        set3 = chart.data.getDataSetByIndex(1) as BarDataSet
 
-                                        set1.values = valuesGoal
+                                      //  set1.values = valuesGoal
                                         set2.values = valuesCalEaten
                                         set3.values = valuesCalBurned
 
@@ -150,47 +161,52 @@ class WeeklyFragment:Fragment() {
                                         chart.notifyDataSetChanged()
                                     } else {
                                         // create 4 DataSets
-                                        set1 = BarDataSet(valuesCalBurned, "Goal")
-                                        set1.color = Color.rgb(104, 241, 175)
+//                                        set1 = BarDataSet(valuesGoal, "Goal")
+//                                        set1.color = Color.rgb(104, 241, 175)
+//                                        set1.valueTextSize=10f
                                         set2 = BarDataSet(valuesCalEaten, "Calories Eaten")
                                         set2.color = Color.rgb(164, 228, 251)
-                                        set3 = BarDataSet(valuesGoal, "Calories Burned")
+                                        set2.valueTextSize=10f
+                                        set3 = BarDataSet(valuesCalBurned, "Calories Burned")
                                         set3.color = Color.rgb(242, 247, 158)
+                                        set3.valueTextSize=10f
 
-                                        val data = BarData(set1, set2, set3)
+                                        val data = BarData( set2, set3)
                                         data.setValueFormatter(LargeValueFormatter())
                                         data.setValueTypeface(tf_light)
                                         chart.data = data
                                     }
 
 
-                                    chart.barData.barWidth = 0.2f
+                                    chart.barData.barWidth = 0.3f
 
 
                                     // restrict the x-axis range
+                                    val xAxis: XAxis = chart.xAxis
+                                    xAxis.typeface = tf_light
+                                    xAxis.granularity = 1f
+                                    xAxis.mAxisMaximum=6f
+                                    xAxis.axisMinimum=0f
+                                    xAxis.position = XAxisPosition.BOTTOM
+                                   // xAxis.spaceMax=0.1f
 
-//            val xAxis: XAxis = chart.xAxis
-//            xAxis.typeface = tf_light
-//            xAxis.granularity = 1f
-//            xAxis.setCenterAxisLabels(true)
-//            xAxis.valueFormatter = object : ValueFormatter() {
-//                override fun getFormattedValue(value: Float): String {
-//                    return value.toString()
-//                }
-//                override fun getAxisLabel(value: Float, axis: AxisBase?): String? {
-//                    return daysInAWeek[value.toInt()]
-//                }
-//
-//            }
-//            xAxis.granularity = 1f // only intervals of 1 day
-//
+                                    xAxis.setCenterAxisLabels(true)
+                                    xAxis.valueFormatter = object : ValueFormatter() {
+                                        override fun getFormattedValue(value: Float): String {
+                                            if (value<0||value>6) return ""
+                                            return daysInAWeek[6-value.toInt()]
+                                        }
 
-
-
-
+                                    }
+                                    xAxis.setDrawGridLines(false)
+                                    xAxis.labelCount=7
 
                                     // add a nice and smooth animation
                                     chart.animateY(1400, Easing.EaseInOutQuad)
+                                    val groupSpace = 0.3f
+                                    val barSpace = 0.03f // x4 DataSet
+
+                                    chart.groupBars(0f, groupSpace, barSpace)
                                     chart.invalidate()
 
 
