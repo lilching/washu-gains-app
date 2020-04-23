@@ -26,17 +26,15 @@ class SignUpPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup_page)
+        db = FirebaseFirestore.getInstance()
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStart() {
 
         super.onStart()
-        db = FirebaseFirestore.getInstance()
-        val settings = FirebaseFirestoreSettings.Builder()
-            .setTimestampsInSnapshotsEnabled(true)
-            .build()
-        db.firestoreSettings = settings
+
 
         //grab button from signup_page
         signUpButton = signUp
