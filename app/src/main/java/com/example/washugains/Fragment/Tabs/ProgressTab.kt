@@ -67,7 +67,7 @@ class ProgressTab : Fragment() {
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
             0 -> "Daily Stats"
-            1 -> "Weekly Progress"
+            1 -> "Weekly Stats"
             2->  "Food"
             else -> "Exercise"
         }

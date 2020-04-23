@@ -19,12 +19,14 @@ import java.time.LocalDate
 class ExerciseAddedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.added_exercise_row, parent, false)) {
     private val name: TextView = itemView.findViewById(R.id.exerciseAddedNameText)
+    private val child : TextView = itemView.findViewById(R.id.childViewAdd)
     private val deleteButton: FloatingActionButton =itemView.findViewById(R.id.deleteExerciseButton)
 
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun bind(exercise : Exercise, db: FirebaseFirestore, currentDate:String, uid:String?, list:ArrayList<Exercise>, viewModel: ExerciseAddedViewModel){
         name.text=exercise.activity
+        child.text="Calories Burned: " + exercise.calories.toString()
 
         if(uid!=null) {
             deleteButton.setOnClickListener {
