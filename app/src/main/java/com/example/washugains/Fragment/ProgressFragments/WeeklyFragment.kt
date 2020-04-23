@@ -61,7 +61,12 @@ class WeeklyFragment:Fragment() {
                     if (document.exists()) {
                         val data = document.data
                         //   val username = data?.get("username") as String
-                        dailyGoal= Integer.parseInt(data?.get("calorieGoal") as String)
+                        dailyGoal = Integer.parseInt(data?.get("calorieGoal") as String)
+                    }
+                }
+            db.collection("users").document(user.uid).collection("dates")
+                .document(LocalDate.now().toString())
+                .addSnapshotListener { document, firebaseFirestoreException ->
 
                         //retrieve the data of previous 7 days
                         for (i in 0..6 as Long) {
@@ -110,6 +115,7 @@ class WeeklyFragment:Fragment() {
                                     leftAxis.setDrawGridLines(true)
                                     leftAxis.spaceTop = 35f
                                     leftAxis.axisMinimum = 0f // this replaces setStartAtZero(true)
+                                    leftAxis.axisMaximum=10000f
                                     val ll = LimitLine(dailyGoal.toFloat(), "Goal")
                                     ll.setLineColor(Color.RED)
                                     ll.setLineWidth(1f)
@@ -216,7 +222,7 @@ class WeeklyFragment:Fragment() {
                             }
 
                     }
-                }
+
         }
 
 
