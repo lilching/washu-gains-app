@@ -34,7 +34,6 @@ class AddedExerciseFragment:Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStart() {
         super.onStart()
-        exercisesAddedText.text = "Exercises Added"
         val recyclerView = view?.findViewById<RecyclerView>(R.id.exerciseAddedRecyclerView)
         viewModel= ViewModelProvider(this).get(ExerciseAddedViewModel::class.java)
         val adapter = ExerciseAddedAdapter(exerciseList,viewModel)

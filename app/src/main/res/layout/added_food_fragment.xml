@@ -10,8 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Food Added"
-        android:textSize="40dp"
+        android:layout_margin="10dp"
+        android:text="Food List"
+        android:textSize="30dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:textColor="#a73737"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -23,7 +23,7 @@
                 android:text="Name"
                 android:layout_gravity="center"
                 android:textSize="20dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/roboto_slab_bold"
                 />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -52,6 +52,7 @@
             android:layout_height="wrap_content"
             android:text="Calorie Burned"
             android:textSize="20dp"
+            android:fontFamily="@font/roboto_light"
             android:padding="5dp"
             />
 

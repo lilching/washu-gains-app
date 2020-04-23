@@ -26,7 +26,7 @@
                 android:text="Name"
                 android:layout_gravity="center"
                 android:textSize="20dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/roboto_slab_bold"
                 />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -63,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0.33"
+                android:fontFamily="@font/roboto_light"
                 android:text="Calories: 100" />
 
             <TextView
@@ -71,6 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0.33"
+                android:fontFamily="@font/roboto_light"
                 android:text="Carbs: 100g" />
 
             <TextView
@@ -79,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0.33"
+                android:fontFamily="@font/roboto_light"
                 android:text="Protein: 100g" />
 
         </LinearLayout>
@@ -95,6 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0.33"
+                android:fontFamily="@font/roboto_light"
                 android:text="Sugar: 100g" />
 
             <TextView
@@ -103,6 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0.33"
+                android:fontFamily="@font/roboto_light"
                 android:text="Fat: 100g" />
 
             <TextView
@@ -112,6 +117,7 @@
                 android:text="Nothing: 10"
                 android:visibility="invisible"
                 android:layout_weight="0.33"
+                android:fontFamily="@font/roboto_light"
                 />
 
         </LinearLayout>
