@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:orientation="horizontal"
         android:paddingHorizontal="10dp"
-
+        android:weightSum="1"
         >
         <TextView
             android:id="@+id/exerciseAddedNameText"
             android:layout_width="0dp"
-            android:layout_weight="0.9"
+            android:layout_weight="0.98"
             android:layout_height="wrap_content"
             android:text="Name"
             android:layout_gravity="center"
             android:textSize="20dp"
             android:textStyle="bold"
             />
-        <Button
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/deleteExerciseButton"
-            android:layout_width="0dp"
-            android:layout_gravity="end"
-            android:layout_weight="0.1"
+            android:layout_width="wrap_content"
+            android:layout_gravity="end|center"
             android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.Button.Small"
-            android:text="x"
+            android:src="@drawable/ic_delete"
+            app:backgroundTint="#FAFAFA"
+            app:rippleColor="#a73737"
+            app:fabCustomSize="40dp"
             />
     </LinearLayout>
 </RelativeLayout>
