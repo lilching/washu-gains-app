@@ -118,9 +118,6 @@ class ExerciseAdapter(private val list : ArrayList<String>, private val elist : 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ExerciseHolder, position: Int) {
         holder.bind(exerciseList[position], filteredMETList[position], db, LocalDate.now().toString(), username)
-//        holder.itemView.parentView.text = exerciseList[position]
-//        holder.itemView.childView.text = filteredMETList[position].toString()
-
         holder.itemView.expandable.setOnExpandListener(object : ExpandableLayout.OnExpandListener {
             override fun onExpand(expanded: Boolean) {
                 if (expandedPositionSet.contains(position)) {

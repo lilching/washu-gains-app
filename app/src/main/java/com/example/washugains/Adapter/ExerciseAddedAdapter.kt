@@ -11,6 +11,7 @@ import com.example.washugains.DataClass.DailyInfo
 import com.example.washugains.DataClass.Exercise
 import com.example.washugains.ExerciseAddedModel.ExerciseAddedViewModel
 import com.example.washugains.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.time.LocalDate
@@ -18,7 +19,7 @@ import java.time.LocalDate
 class ExerciseAddedViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     RecyclerView.ViewHolder(inflater.inflate(R.layout.added_exercise_row, parent, false)) {
     private val name: TextView = itemView.findViewById(R.id.exerciseAddedNameText)
-    private val deleteButton: Button =itemView.findViewById(R.id.deleteExerciseButton)
+    private val deleteButton: FloatingActionButton =itemView.findViewById(R.id.deleteExerciseButton)
 
 
     @RequiresApi(Build.VERSION_CODES.O)
