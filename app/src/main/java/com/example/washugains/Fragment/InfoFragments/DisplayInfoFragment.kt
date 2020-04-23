@@ -45,10 +45,10 @@ class DisplayInfoFragment : Fragment() {
         var calorieGoal = arguments!!.getInt("calorieGoal")
         var username = arguments!!.getString("username")
 
-        myFeet.text = "height:   " + feet.toString() + "' "
+        myFeet.text = "Height:   " + feet.toString() + "' "
         myInch.text = inches.toString() + "''"
-        myWeight.text = "weight: " + weight.toString() + " lbs"
-        myCalories.text = "calories: " + calorieGoal.toString()
+        myWeight.text = "Weight: " + weight.toString() + " lbs"
+        myCalories.text = "Calorie Goal: " + calorieGoal.toString()
 
         logoutButton = logout
         updateButton = myInfoEdit
