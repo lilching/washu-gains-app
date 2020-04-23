@@ -28,51 +28,69 @@ class ExerciseHolder(inflater: LayoutInflater, parent: ViewGroup) :
     private val enter: FloatingActionButton = itemView.findViewById(R.id.enter)
     private val minutes: TextView = itemView.findViewById(R.id.minutesEntered)
     private val uid=FirebaseAuth.getInstance().uid
+    private var weight : Int = 0
 
-    fun caloriesBurned(MET: Int, time: Int, weight: Int): Int{
-        val cals = ((MET*weight/2.2)*time/60).toInt()
-        return cals
+    private fun caloriesBurned(MET: Int, time: Int, weight: Int): Int{
+        return ((MET*weight/2.2)*time/60).toInt()
     }
 
     fun bind(exercise: Exercise, met:Int, db:FirebaseFirestore,currentDate:String, username: String){
         info.text=exercise.activity
+
+        //find weight of user
         db.collection("users").whereEqualTo("username", username).get()
             .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
-                        var weight = document.get("weight").toString().toInt()
-                        enter.setOnClickListener{
-                            val calsLost = caloriesBurned(met, minutes.text.toString().toInt(), weight)
-                            if (uid!=null) {
-                                exercise.calories = calsLost
-                                db.collection("users").document(uid).collection("dates")
-                                    .document(currentDate).collection("exerciseAdded").add(exercise)
-                                    .addOnSuccessListener {
-                                        Toast.makeText(itemView.context,"Exercise added!", Toast.LENGTH_SHORT).show()
-                                    }
-
-                                db.collection("users").document(uid).collection("dates")
-                                    .document(currentDate).get()
-                                    .addOnSuccessListener { documentSnapshot ->
-                                        var dailyData = documentSnapshot.toObject(DailyInfo::class.java)
-                                        if (dailyData != null)
-                                            dailyData =
-                                                DailyInfo(
-                                                    dailyData.date,
-                                                    dailyData.calories,
-                                                    dailyData.carb,
-                                                    dailyData.fat,
-                                                    dailyData.sugars,
-                                                    dailyData.protein,
-                                                    dailyData.caloriesBurned + calsLost)
-                                        db.collection("users").document(uid).collection("dates")
-                                            .document(currentDate).set(dailyData!!)
-                                    }
-                            }
-                        }
+                        weight = document.get("weight").toString().toInt()
                     }
                 }
             })
+
+        if (uid!=null) {
+            enter.setOnClickListener {
+                if (minutes.text.toString() == "") {
+                    Toast.makeText(itemView.context, "Please enter a value", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    val met = exercise.met
+                    val calsLost =
+                        caloriesBurned(met, minutes.text.toString().toInt(), weight)
+                    //                                    val exerciseHold = exercise
+                    exercise.calories = calsLost
+                    db.collection("users").document(uid).collection("dates")
+                        .document(currentDate).collection("exerciseAdded")
+                        .add(exercise)
+                        .addOnSuccessListener {
+                            Toast.makeText(
+                                itemView.context,
+                                "Exercise added!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    db.collection("users").document(uid).collection("dates")
+                        .document(currentDate).get()
+                        .addOnSuccessListener { documentSnapshot ->
+                            var dailyData =
+                                documentSnapshot.toObject(DailyInfo::class.java)
+                            if (dailyData != null)
+                                dailyData =
+                                    DailyInfo(
+                                        dailyData.date,
+                                        dailyData.calories,
+                                        dailyData.carb,
+                                        dailyData.fat,
+                                        dailyData.sugars,
+                                        dailyData.protein,
+                                        dailyData.caloriesBurned + calsLost
+                                    )
+                            db.collection("users").document(uid).collection("dates")
+                                .document(currentDate).set(dailyData!!)
+                        }
+                }
+            }
+        }
     }
 }
 
@@ -80,7 +98,7 @@ class ExerciseAdapter(private val list : ArrayList<String>, private val elist : 
     : RecyclerView.Adapter<ExerciseHolder>(), Filterable {
 
     private var filteredExerciseList = ArrayList<String>()
-    private var ExerciseList = ArrayList<Exercise>()
+    private var exerciseList = ArrayList<Exercise>()
     private var filteredMETList = ArrayList<Int>()
     private val db=FirebaseFirestore.getInstance()
     private val expandedPositionSet : HashSet<Int> = HashSet()
@@ -89,7 +107,7 @@ class ExerciseAdapter(private val list : ArrayList<String>, private val elist : 
     init {
         filteredExerciseList = list
         filteredMETList = METlist
-        ExerciseList = elist
+        exerciseList = elist
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseHolder {
@@ -99,8 +117,8 @@ class ExerciseAdapter(private val list : ArrayList<String>, private val elist : 
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ExerciseHolder, position: Int) {
-        holder.bind(ExerciseList[position], filteredMETList[position], db, LocalDate.now().toString(), username)
-        holder.itemView.parentView.text = filteredExerciseList[position]
+        holder.bind(exerciseList[position], filteredMETList[position], db, LocalDate.now().toString(), username)
+//        holder.itemView.parentView.text = exerciseList[position]
 //        holder.itemView.childView.text = filteredMETList[position].toString()
 
         holder.itemView.expandable.setOnExpandListener(object : ExpandableLayout.OnExpandListener {
@@ -119,7 +137,7 @@ class ExerciseAdapter(private val list : ArrayList<String>, private val elist : 
 
 
     override fun getItemCount(): Int {
-        return filteredExerciseList.size
+        return exerciseList.size
     }
 
     override fun getFilter(): Filter {
@@ -127,24 +145,24 @@ class ExerciseAdapter(private val list : ArrayList<String>, private val elist : 
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
                 if (charSearch.isEmpty()) {
-                    filteredExerciseList = list
+                    exerciseList = elist
                 }
                 else {
-                    val filteredResults = ArrayList<String>()
-                    for (row in list) {
-                        if (row.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
+                    val filteredResults = ArrayList<Exercise>()
+                    for (row in elist) {
+                        if (row.activity.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
                             filteredResults.add(row)
                         }
                     }
-                    filteredExerciseList = filteredResults
+                    exerciseList = filteredResults
                 }
                 val finalFiltered = FilterResults()
-                finalFiltered.values = filteredExerciseList
+                finalFiltered.values = exerciseList
                 return finalFiltered
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                filteredExerciseList = results?.values as ArrayList<String>
+                exerciseList = results?.values as ArrayList<Exercise>
                 notifyDataSetChanged()
             }
         }
