@@ -178,7 +178,8 @@ class WeeklyFragment:Fragment() {
                                     }
 
 
-                                    chart.barData.barWidth = 0.3f
+                                    chart.barData.barWidth = 0.4f
+                                    chart.setVisibleXRange(0f,8f)
 
 
                                     // restrict the x-axis range
@@ -203,8 +204,8 @@ class WeeklyFragment:Fragment() {
 
                                     // add a nice and smooth animation
                                     chart.animateY(1400, Easing.EaseInOutQuad)
-                                    val groupSpace = 0.3f
-                                    val barSpace = 0.03f // x4 DataSet
+                                    val groupSpace = 0.2f
+                                    val barSpace = 0f // x4 DataSet
 
                                     chart.groupBars(0f, groupSpace, barSpace)
                                     chart.invalidate()
