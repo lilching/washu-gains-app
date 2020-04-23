@@ -147,8 +147,7 @@ class WeeklyFragment:Fragment() {
                                     }
                                     valuesCalBurned.reverse()
                                     valuesCalEaten.reverse()
-
-                                  //  val set1: BarDataSet
+                                    
                                     val set2: BarDataSet
                                     val set3: BarDataSet
 
