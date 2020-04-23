@@ -27,7 +27,6 @@ class ExerciseFragment : Fragment() {
 
     val exerciseList : ArrayList<Exercise> = ArrayList()
     var exerciseString : ArrayList<String> = ArrayList()
-    var exercises: ArrayList<Exercise> = ArrayList()
     val exerciseMETlist: ArrayList<Int> = ArrayList()
 
 
@@ -50,7 +49,7 @@ class ExerciseFragment : Fragment() {
         var username = arguments!!.getString("username")!!
 
         val recyclerView = view?.findViewById<RecyclerView>(R.id.exerciseRecyclerView)
-        val adapter = ExerciseAdapter(exerciseString, exercises, exerciseMETlist, username)
+        val adapter = ExerciseAdapter(exerciseString, exerciseList, exerciseMETlist, username)
         recyclerView?.adapter = adapter
         recyclerView?.layoutManager = LinearLayoutManager(context)
         val multiLineDivider = MultiLineDivider(context!!)
@@ -64,10 +63,9 @@ class ExerciseFragment : Fragment() {
                 exerciseList.clear()
                 for (productSnapshot in dataSnapshot.children) {
                     val exercise = productSnapshot.getValue(Exercise::class.java)
-                    exerciseList.add(exercise!!)
                     if (exercise!=null){
                         exerciseString.add(exercise.activity)
-                        exercises.add(exercise)
+                        exerciseList.add(exercise)
                         exerciseMETlist.add(exercise.met)
                     }
                 }
