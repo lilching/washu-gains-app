@@ -1,19 +1,13 @@
 package com.example.washugains.Fragment.Tabs
 
-import EditInfoFragment
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
-import com.example.washugains.Activity.LoginPage
 import com.example.washugains.Fragment.InfoFragments.DisplayInfoFragment
-//import com.example.washugains.Fragment.EditInfoFragment
 import com.example.washugains.R
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.info_page.*
@@ -21,8 +15,6 @@ import kotlinx.android.synthetic.main.info_page.*
 class InfoTab : Fragment() {
 
     private lateinit var db : FirebaseFirestore
-    private lateinit var updateButton : Button
-    private lateinit var logoutButton : Button
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -37,8 +37,6 @@ class ExerciseFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        var weight = 0
-        var calories = 0
         db = FirebaseFirestore.getInstance()
         var username = arguments!!.getString("username")!!
 

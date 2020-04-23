@@ -17,7 +17,6 @@ import com.example.washugains.ExerciseAddedModel.ExerciseAddedViewModel
 import com.example.washugains.R
 import com.google.firebase.auth.FirebaseAuth
 import com.sakebook.android.library.multilinedevider.MultiLineDivider
-import kotlinx.android.synthetic.main.added_exercise_fragment.*
 
 class AddedExerciseFragment:Fragment() {
     val exerciseList : ArrayList<Exercise> = ArrayList()

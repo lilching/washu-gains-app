@@ -16,7 +16,6 @@ import com.example.washugains.DataClass.Food
 import com.example.washugains.FoodAddedModel.FoodAddedViewModel
 import com.example.washugains.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.sakebook.android.library.multilinedevider.MultiLineDivider
 
 class AddedFoodFragment: Fragment() {
