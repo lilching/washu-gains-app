@@ -54,7 +54,6 @@ class FoodFragment : Fragment() {
     val REQUEST_EXTERNAL_PERMISSIONS = 4
 
 
-    lateinit var currentPhotoPath: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -206,7 +205,8 @@ class FoodFragment : Fragment() {
                     }
                     .addOnFailureListener { e ->
                         // Task failed with an exception
-                        // todo
+                        Toast.makeText(context,"Cannot classify this image!",Toast.LENGTH_SHORT).show()
+
                     }
 
 
@@ -278,7 +278,7 @@ class FoodFragment : Fragment() {
                             }
                             .addOnFailureListener { e ->
                                 // Task failed with an exception
-                                // todo
+                                Toast.makeText(context,"Cannot classify this image!",Toast.LENGTH_SHORT).show()
                             }
                     }
                     else{

@@ -14,16 +14,7 @@ import com.example.washugains.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.display_info_fragment.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DisplayInfoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DisplayInfoFragment : Fragment() {
     private lateinit var updateButton : Button
     private lateinit var logoutButton : Button

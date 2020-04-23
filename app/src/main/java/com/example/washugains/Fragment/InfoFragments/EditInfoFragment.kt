@@ -17,11 +17,6 @@ import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.edit_info_fragment.*
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [EditInfoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class EditInfoFragment : Fragment() {
 
     private lateinit var db : FirebaseFirestore

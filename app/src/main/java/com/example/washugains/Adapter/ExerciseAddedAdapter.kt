@@ -3,7 +3,6 @@ package com.example.washugains.Adapter
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView

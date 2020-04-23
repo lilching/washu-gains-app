@@ -1,23 +1,17 @@
 package com.example.washugains.Fragment.InputFragments
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.washugains.Adapter.ExerciseAdapter
 import com.example.washugains.DataClass.Exercise
 import com.example.washugains.R
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
 import com.sakebook.android.library.multilinedevider.MultiLineDivider
 import kotlinx.android.synthetic.main.exercise_fragment.*
 

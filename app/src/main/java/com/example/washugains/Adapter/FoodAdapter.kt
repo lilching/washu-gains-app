@@ -14,7 +14,6 @@ import com.example.washugains.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.expandable_exercise_row.view.*
 import kotlinx.android.synthetic.main.expandable_food_row.view.*
 import java.time.LocalDate
 import java.util.*

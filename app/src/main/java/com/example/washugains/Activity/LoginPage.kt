@@ -61,7 +61,6 @@ class LoginPage : AppCompatActivity() {
                                         if (document.exists()) {
                                             val data = document.data
                                             val username = data?.get("username") as String
-//                                        var calories = data?.get("calories") as String
 
                                             //checking if the data for previous 30 days exists
                                             val dateMap =
@@ -99,19 +98,14 @@ class LoginPage : AppCompatActivity() {
                                                 }
 
 
-//                                        val calories = 0
                                             val intent = Intent(this, MainActivity::class.java)
                                             intent.putExtra("username", username)
-//                                        intent.putExtra("calories", calories)
-                                            //  val dailyInfoList=ArrayList<DailyInfo>(dateMap.values as MutableCollection<out DailyInfo>)
-                                            //  intent.putExtra("dailyInfoList",dailyInfoList)
                                             startActivity(intent)
                                             Toast.makeText(
                                                 this,
                                                 "Authentication Successful",
                                                 Toast.LENGTH_SHORT
                                             ).show()
-                                            // Toast.makeText(context, currentDate, Toast.LENGTH_SHORT).show()
                                         }
                                     }
                             }
