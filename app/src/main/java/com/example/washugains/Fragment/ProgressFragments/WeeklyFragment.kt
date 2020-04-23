@@ -115,7 +115,6 @@ class WeeklyFragment:Fragment() {
                                     leftAxis.setDrawGridLines(true)
                                     leftAxis.spaceTop = 35f
                                     leftAxis.axisMinimum = 0f // this replaces setStartAtZero(true)
-                                    leftAxis.axisMaximum=10000f
                                     val ll = LimitLine(dailyGoal.toFloat(), "Goal")
                                     ll.setLineColor(Color.RED)
                                     ll.setLineWidth(1f)
@@ -185,7 +184,7 @@ class WeeklyFragment:Fragment() {
 
 
                                     chart.barData.barWidth = 0.4f
-                                    chart.setVisibleXRange(0f,8f)
+                                    chart.setVisibleXRange(0f,7.5f)
 
 
                                     // restrict the x-axis range
