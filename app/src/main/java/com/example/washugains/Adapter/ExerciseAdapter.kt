@@ -42,32 +42,46 @@ class ExerciseHolder(inflater: LayoutInflater, parent: ViewGroup) :
                     for (document in task.result!!) {
                         var weight = document.get("weight").toString().toInt()
                         enter.setOnClickListener{
-                            val calsLost = caloriesBurned(met, minutes.text.toString().toInt(), weight)
-                            if (uid!=null) {
-                                exercise.calories = calsLost
-                                db.collection("users").document(uid).collection("dates")
-                                    .document(currentDate).collection("exerciseAdded").add(exercise)
-                                    .addOnSuccessListener {
-                                        Toast.makeText(itemView.context,"Exercise added!", Toast.LENGTH_SHORT).show()
-                                    }
 
-                                db.collection("users").document(uid).collection("dates")
-                                    .document(currentDate).get()
-                                    .addOnSuccessListener { documentSnapshot ->
-                                        var dailyData = documentSnapshot.toObject(DailyInfo::class.java)
-                                        if (dailyData != null)
-                                            dailyData =
-                                                DailyInfo(
-                                                    dailyData.date,
-                                                    dailyData.calories,
-                                                    dailyData.carb,
-                                                    dailyData.fat,
-                                                    dailyData.sugars,
-                                                    dailyData.protein,
-                                                    dailyData.caloriesBurned + calsLost)
-                                        db.collection("users").document(uid).collection("dates")
-                                            .document(currentDate).set(dailyData!!)
-                                    }
+                            if (minutes.text.toString() == "") {
+                                Toast.makeText(itemView.context,"Please enter a value",Toast.LENGTH_SHORT).show()
+                            }
+                            else {
+                                val calsLost =
+                                    caloriesBurned(met, minutes.text.toString().toInt(), weight)
+                                if (uid != null) {
+                                    exercise.calories = calsLost
+                                    db.collection("users").document(uid).collection("dates")
+                                        .document(currentDate).collection("exerciseAdded")
+                                        .add(exercise)
+                                        .addOnSuccessListener {
+                                            Toast.makeText(
+                                                itemView.context,
+                                                "Exercise added!",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+
+                                    db.collection("users").document(uid).collection("dates")
+                                        .document(currentDate).get()
+                                        .addOnSuccessListener { documentSnapshot ->
+                                            var dailyData =
+                                                documentSnapshot.toObject(DailyInfo::class.java)
+                                            if (dailyData != null)
+                                                dailyData =
+                                                    DailyInfo(
+                                                        dailyData.date,
+                                                        dailyData.calories,
+                                                        dailyData.carb,
+                                                        dailyData.fat,
+                                                        dailyData.sugars,
+                                                        dailyData.protein,
+                                                        dailyData.caloriesBurned + calsLost
+                                                    )
+                                            db.collection("users").document(uid).collection("dates")
+                                                .document(currentDate).set(dailyData!!)
+                                        }
+                                }
                             }
                         }
                     }
